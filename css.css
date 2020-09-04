@@ -1,0 +1,21 @@
+#button {
+	visibility: hidden;
+}
+
+#boatSelect {
+	
+}
+
+#playerConfirmation {
+	visibility: hidden;
+	position: absolute;
+}
+
+#game {
+	visibility: hidden;
+	font-family: "Lucida Console";
+}
+
+#hit {
+	color: red;
+}
