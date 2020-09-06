@@ -24,6 +24,11 @@ main = function() {
 		selecter.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />"
 	}
 	
+	//make this button make the player finish their boat moving phase
+	document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"\">Confirm</button>";
+	//the button should've already been visible from the listener, but apparently it gets reset when I do outerHTML
+	document.querySelector("#button").style.visibility = "visible";
+	
 	//this should be replaced with some function that makes "PLAYER 1 TURN" visible, and the button that goes with it
 	//sets currentStage to 0 and calls drawBoard(1)
 	drawBoard(1);

@@ -5,9 +5,9 @@
 		<link rel="stylesheet" href="css.css" />
 	</head>
 	<body>
+		<script src="scripts/main.js"></script>
 		<script src="scripts/boat.js"></script>
 		<script src="scripts/player.js"></script>
-		<script src="scripts/main.js"></script>
 		<script src="scripts/listeners.js"></script>
 		<div id="game"></div>
 		
@@ -19,10 +19,7 @@
 			<option value="4">4</option>
 			<option value="5">5</option>
 		</select>
-		<!--this button doesn't turn invisible after it is first pressed
-		as I was hoping to just use the same button to confirm that the player
-		is done moving their boats. However, it still just calls main so don't
-		press it more than once-->
+		
 		<button id="button" type="button" onclick="main()">Confirm</button>
 		
 		<!--This is hopefully going to be used in between player turns to ensure privacy, as I dont see
