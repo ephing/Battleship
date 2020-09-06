@@ -1,3 +1,7 @@
+/**
+* @author Ethan Grantz
+* This is the boat class
+*/
 class Boat {
 	//technically we only need the dim parameter, as we can just make vertical a default and sC can be inferred from dim.
 	//however, I added the extra parameters to give creative freedom

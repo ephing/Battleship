@@ -1,4 +1,9 @@
 /**
+* @author Ethan Grantz
+* Contains info for player interaction with game
+*/
+
+/**
 * Makes the boat count selection button visible once everything is loaded
 */
 document.addEventListener("DOMContentLoaded", () => {

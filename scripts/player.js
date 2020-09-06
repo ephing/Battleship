@@ -1,3 +1,8 @@
+/**
+* @author Ethan Grantz
+* Contains Boat Board and player classes and also the original sketches for the boat board graphics
+*/
+
 class BoatBoard {
 	constructor(boatNum) {
 		this.boats = [];
@@ -125,7 +130,9 @@ class BoatBoard {
 		return true;
 	}
 }
-/*gaps are 3 spaces wide, use &nbsp to represent spaces that are adjacent to other spaces
+//gaps are 3 spaces wide, use &nbsp to represent spaces that are adjacent to other spaces.
+//These graphics look good on Windows and on Ubuntu 20 when using the fonts specified in css.css
+/*
    A   B   C   D   E   F   G   H   I
 _|___|___|___|___|___|___|___|___|___|
 1|   |	 |	 |	 |	 |	 |	 |   |   |

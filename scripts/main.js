@@ -1,4 +1,9 @@
 /**
+* @author Ethan Grantz
+* Contains functions that manipulate game progression and also the draw function
+*/
+
+/**
 * Initializes some important game info (plus some other stuff that will be changed later)
 */
 main = function() {
@@ -55,6 +60,10 @@ drawBoard = function() {
 	}
 }
 
+/**
+* Makes changes to graphics and player controls corresponding to current game stage
+* @param {number} -1,0,or 1, for the various stages of the game
+*/
 stageInit = function(stage) {
 	if (stage == -1) {
 		currentStage = -1;
