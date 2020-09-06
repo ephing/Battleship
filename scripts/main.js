@@ -4,34 +4,21 @@
 main = function() {
 	let selecter = document.querySelector("#boatSelect");
 	let boatCount = selecter.options[selecter.selectedIndex].value;
-	currentPlayer = 1;
+	selecter.style.visibility = "hidden";
+	currentPlayer = 2;
 	//stage -1: default value, no controls
 	//stage 0: placing boats phase
 	//stage 1: choosing where to shoot opponent phase
 	//this is used so that we can make the keyboard inputs do different things in different phases of the game
-	currentStage = 0;
-	document.querySelector("#boatCount").style.visibility = "hidden";
-	document.querySelector("#boatCount").style.position = "absolute";
+	currentStage = -1;
+	document.querySelector("#boatCount").outerHTML = "";
 	p1 = new Player(boatCount, 1);
 	p2 = new Player(boatCount, 2);
 	
-	selecter.innerHTML = "";
-	//I wanted to use the same <select> block for both choosing boatCount and
-	//for selecting which boat to move. This loop resizes the selecter if you choose fewer than 5 boats
-	//This is subject to change later as it causes clutter whether I put this here or add another
-	//<select> in index.html
-	for (let i = 0; i < boatCount; i++) {
-		selecter.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />"
-	}
+	//this button make the player finish their boat moving phase
+	document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"stageInit(-1)\">Confirm</button>";
 	
-	//make this button make the player finish their boat moving phase
-	document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"\">Confirm</button>";
-	//the button should've already been visible from the listener, but apparently it gets reset when I do outerHTML
-	document.querySelector("#button").style.visibility = "visible";
-	
-	//this should be replaced with some function that makes "PLAYER 1 TURN" visible, and the button that goes with it
-	//sets currentStage to 0 and calls drawBoard(1)
-	drawBoard(1);
+	stageInit(-1);
 }
 
 /**
@@ -65,5 +52,35 @@ drawBoard = function() {
 			}
 		}
 		document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|<br />";
+	}
+}
+
+stageInit = function(stage) {
+	if (stage == -1) {
+		currentStage = -1;
+		if (currentPlayer == 1) currentPlayer = 2;
+		else currentPlayer = 1;
+		document.querySelector("#game").innerHTML = "";
+		document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"stageInit(0)\">Confirm</button>";
+		document.querySelector("#button").style.visibility = "hidden";
+		document.querySelector("#boatSelect").style.visibility = "hidden";
+	} else if (stage == 0) {
+		currentStage = 0;
+		document.querySelector("#playerConfirmation").innerHTML = "";
+		let selecter = document.querySelector("#boatSelect");
+		selecter.innerHTML = "";
+		//I wanted to use the same <select> block for both choosing boatCount and
+		//for selecting which boat to move. This loop resizes the selecter if you choose fewer than 5 boats
+		//This is subject to change later as it causes clutter whether I put this here or add another
+		//<select> in index.html
+		for (let i = 0; i < p1.boatBoard.boatCount; i++) {
+			selecter.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />";
+		}
+		selecter.style.visibility = "visible";
+		document.querySelector("#button").style.visibility = "visible";
+		drawBoard(currentPlayer);
+	} else if (stage == 1) {
+		currentStage = 1;
+		document.querySelector("#playerConfirmation").innerHTML = "";
 	}
 }
