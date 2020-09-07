@@ -27,7 +27,7 @@ main = function() {
 }
 
 /**
-* Draws player ui in the div block with id="game" (currently only the boat board)
+* Draws player ui in the div block with id="game" (need to add hit board functionality)
 */
 drawBoard = function() {
 	document.querySelector("#game").innerHTML = "";
@@ -36,27 +36,39 @@ drawBoard = function() {
 	for (let i = 0; i < 9; i++) {
 		topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
 	}
-	topText += "<br />_|___|___|___|___|___|___|___|___|___|<br />"
+	topText += "&nbsp&nbsp&nbsp";
+	for (let i = 0; i < 9; i++) {
+		topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
+	}
+	topText += "<br />_|___|___|___|___|___|___|___|___|___|&nbsp_|___|___|___|___|___|___|___|___|___|<br />";
 	document.querySelector("#game").innerHTML += topText;
 	let b;
 	if (currentPlayer == 1) b = p1.boatBoard;
 	else b = p2.boatBoard;
 	for (let i = 0; i < 9; i++) { //row
-		document.querySelector("#game").innerHTML += i;
-		for (let j = 0; j < 9; j++) { //column
-			//check if boat is at current coordinates
+		document.querySelector("#game").innerHTML += (i + 1);
+		//column
+		//hit board
+		for (let j = 0; j < 9; j++) {
+			//add something for when a spot has already been guessed
+			document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
+		}
+		document.querySelector("#game").innerHTML += "|&nbsp" + (i + 1);
+		//boat board
+		for (let j = 0; j < 9; j++) {
 			if (b.isAHit(j,i)) {
-				let boatID = b.getBoatID(j,i);
-				//color it red if its already been hit
+				let bid = b.getBoatID(j,i);
 				if (b.hasBeenHit[i][j]) {
-					document.querySelector("#game").innerHTML += "| <span id=\"hit\">" + boatID + "</span>&nbsp";
-				}
-				else document.querySelector("#game").innerHTML += "|&nbsp" + boatID + "&nbsp";
+					document.querySelector("#game").innerHTML += "|&nbsp<span id=\"hit\">" + bid + "</span>&nbsp";
+				} else {
+					document.querySelector("#game").innerHTML += "|&nbsp" + bid + "&nbsp";
+				}	
 			} else {
-				document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
+				document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";	
 			}
 		}
-		document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|<br />";
+		document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|";
+		document.querySelector("#game").innerHTML += "&nbsp&nbsp|___|___|___|___|___|___|___|___|___|<br />";
 	}
 }
 
