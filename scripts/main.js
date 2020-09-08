@@ -74,7 +74,7 @@ drawBoard = function() {
 
 /**
 * Makes changes to graphics and player controls corresponding to current game stage
-* @param {number} -1,0,or 1, for the various stages of the game
+* @param {number} stage -1,0,or 1, for the various stages of the game
 */
 stageInit = function(stage) {
 	if (stage == -1) {

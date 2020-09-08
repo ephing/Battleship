@@ -23,7 +23,7 @@ class Boat {
 	
 	/**
 	* This function adds or subtracts from the row coordinates of the boat
-	* @param {number} either -1 or 1 for up and down respectively
+	* @param {number} dir either -1 or 1 for up and down respectively
 	*/
 	moveVert(dir) {
 		for (let coord of this.hitCoordinates) {
@@ -33,7 +33,7 @@ class Boat {
 	
 	/**
 	* This function adds or subtracts from the column coordinates of the boat
-	* @param {number} either -1 or 1 for left and right respectively
+	* @param {number} dir either -1 or 1 for left and right respectively
 	*/
 	moveHor(dir) {
 		for (let coord of this.hitCoordinates) {

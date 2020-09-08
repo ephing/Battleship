@@ -18,8 +18,8 @@ class BoatBoard {
 	
 	/**
 	* Detects if 2 boats are intersecting
-	* @param {Object} instance of Boat
-	* @param {Object} another instance of Boat
+	* @param {Object} boat1 instance of Boat
+	* @param {Object} boat2 another instance of Boat
 	* @returns {Boolean} true if boats intersect, otherwise false
 	*/
 	intersect(boat1, boat2) {
@@ -33,8 +33,8 @@ class BoatBoard {
 	
 	/**
 	* Detects if there is a boat present at the given coordinates
-	* @param {number} index correlating to column (0-8)
-	* @param {number} index correlating to row (0-8)
+	* @param {number} column index correlating to column (0-8)
+	* @param {number} row index correlating to row (0-8)
 	* @returns {Boolean} true if boat is present, otherwise false
 	*/
 	isAHit(column, row) {
@@ -48,8 +48,8 @@ class BoatBoard {
 	
 	/**
 	* Determines which boat is present at a given location
-	* @param {number} index correlating to column (0-8)
-	* @param {number} index correlating to row (0-8)
+	* @param {number} column index correlating to column (0-8)
+	* @param {number} row index correlating to row (0-8)
 	* @returns {number} length of the boat (0 if no boat is present)
 	*/
 	getBoatID(column, row) {
