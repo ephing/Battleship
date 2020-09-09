@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
  * Detects key presses and executes functions based on them
  */
 document.addEventListener("keydown", (e) => {
-    if (currentStage == 0) {
+    if (currentStage === 0) {
         let player;
-        if (currentPlayer == 1) player = p1.boatBoard;
+        if (currentPlayer === 1) player = p1.boatBoard;
         else player = p2.boatBoard;
         let selector = document.querySelector("#boatSelect");
         let boatChoice = parseInt(selector.options[selector.selectedIndex].value) - 1;

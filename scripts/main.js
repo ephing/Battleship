@@ -7,10 +7,10 @@
  * Initializes some important game info (plus some other stuff that will be changed later)
  */
 main = function () {
-    let selecter = document.querySelector("#boatSelect");
-    let boatCount = selecter.options[selecter.selectedIndex].value;
-    selecter.style.visibility = "hidden";
-    currentPlayer = 2;
+    let selector = document.querySelector("#boatSelect");
+    let boatCount = selector.options[selector.selectedIndex].value;
+    selector.style.visibility = "hidden";
+    let currentPlayer = 2;
     //stage -1: default value, no controls
     //stage 0: placing boats phase
     //stage 1: choosing where to shoot opponent phase
