@@ -2,9 +2,10 @@
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.Split = factory());
-}(this, (function () { 'use strict';
+        typeof define === 'function' && define.amd ? define(factory) :
+            (global.Split = factory());
+}(this, (function () {
+    'use strict';
 
     // The programming goals of Split.js are to deliver readable, understandable and
     // maintainable code, while at the same time manually optimizing for tiny minified file size,
@@ -22,7 +23,9 @@
     var aGutterSize = '_b';
     var bGutterSize = '_c';
     var HORIZONTAL = 'horizontal';
-    var NOOP = function () { return false; };
+    var NOOP = function () {
+        return false;
+    };
 
     // Figure out if we're in IE8 or not. IE8 will still render correctly,
     // but will be static instead of draggable.
@@ -43,7 +46,9 @@
         .shift()) + "calc";
 
     // Helper function checks if its argument is a string-like type
-    var isString = function (v) { return typeof v === 'string' || v instanceof String; };
+    var isString = function (v) {
+        return typeof v === 'string' || v instanceof String;
+    };
 
     // Helper function allows elements and string selectors to be used
     // interchangeably. In either case an element is returned. This allows us to
@@ -115,7 +120,7 @@
     var defaultGutterStyleFn = function (dim, gutSize) {
         var obj;
 
-        return (( obj = {}, obj[dim] = (gutSize + "px"), obj ));
+        return ((obj = {}, obj[dim] = (gutSize + "px"), obj));
     };
 
     // The main function to initialize a split. Split.js thinks about each pair
@@ -146,7 +151,7 @@
     //    `pair` object and a gutter.
     // 5. Actually size the pair elements, insert gutters and attach event listeners.
     var Split = function (idsOption, options) {
-        if ( options === void 0 ) options = {};
+        if (options === void 0) options = {};
 
         var ids = idsOption;
         var dimension;
@@ -170,12 +175,16 @@
         var parentFlexDirection = parentStyle ? parentStyle.flexDirection : null;
 
         // Set default options.sizes to equal percentages of the parent element.
-        var sizes = getOption(options, 'sizes') || ids.map(function () { return 100 / ids.length; });
+        var sizes = getOption(options, 'sizes') || ids.map(function () {
+            return 100 / ids.length;
+        });
 
         // Standardize minSize to an array if it isn't already. This allows minSize
         // to be passed as a number.
         var minSize = getOption(options, 'minSize', 100);
-        var minSizes = Array.isArray(minSize) ? minSize : ids.map(function () { return minSize; });
+        var minSizes = Array.isArray(minSize) ? minSize : ids.map(function () {
+            return minSize;
+        });
 
         // Get other options
         var expandToMin = getOption(options, 'expandToMin', false);
@@ -248,13 +257,17 @@
         }
 
         function getSizes() {
-            return elements.map(function (element) { return element.size; })
+            return elements.map(function (element) {
+                return element.size;
+            })
         }
 
         // Supports touch events, but not multitouch, so only the first
         // finger `touches[0]` is counted.
         function getMousePosition(e) {
-            if ('touches' in e) { return e.touches[0][clientAxis] }
+            if ('touches' in e) {
+                return e.touches[0][clientAxis]
+            }
             return e[clientAxis]
         }
 
@@ -295,7 +308,9 @@
             var a = elements[this.a];
             var b = elements[this.b];
 
-            if (!this.dragging) { return }
+            if (!this.dragging) {
+                return
+            }
 
             // Get the offset of the event from the first side of the
             // pair `this.start`. Then offset by the initial position of the
@@ -362,15 +377,21 @@
         function innerSize(element) {
             // Return nothing if getComputedStyle is not supported (< IE9)
             // Or if parent element has no layout yet
-            if (!getComputedStyle) { return null }
+            if (!getComputedStyle) {
+                return null
+            }
 
             var computedStyle = getComputedStyle(element);
 
-            if (!computedStyle) { return null }
+            if (!computedStyle) {
+                return null
+            }
 
             var size = element[clientSize];
 
-            if (size === 0) { return null }
+            if (size === 0) {
+                return null
+            }
 
             if (direction === HORIZONTAL) {
                 size -=
@@ -397,7 +418,9 @@
                 return sizesToTrim
             }
 
-            if (minSizes.reduce(function (a, b) { return a + b; }, 0) > parentSize) {
+            if (minSizes.reduce(function (a, b) {
+                return a + b;
+            }, 0) > parentSize) {
                 return sizesToTrim
             }
 
