@@ -10,7 +10,7 @@ main = function () {
     let selector = document.querySelector("#boatSelect");
     let boatCount = selector.options[selector.selectedIndex].value;
     selector.style.visibility = "hidden";
-    let currentPlayer = 2;
+    currentPlayer = 2;
     //stage -1: default value, no controls
     //stage 0: placing boats phase
     //stage 1: choosing where to shoot opponent phase
