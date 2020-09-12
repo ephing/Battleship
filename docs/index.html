@@ -131,6 +131,12 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
+                        href='#application_init'
+                        class='regular pre-open'>
+                        #_init
+                      </a></li>
+                      
+                      <li><a
                         href='#applicationmain'
                         class='regular pre-open'>
                         #main
@@ -153,26 +159,6 @@
                   
                   
                 </div>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#addeventlistener'
-                  class="">
-                  addEventListener
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#addeventlistener'
-                  class="">
-                  addEventListener
-                  
-                </a>
                 
                 </li>
               
@@ -898,7 +884,8 @@ Adds baseline styles to the page, used by all AnchorJS links irregardless of con
   </div>
   
 
-  
+  <p>Contains functions that manipulate game progression and also the draw function and info for player interaction with game</p>
+
     <div class='pre p1 fill-light mt0'>new Application()</div>
   
   
@@ -906,8 +893,7 @@ Adds baseline styles to the page, used by all AnchorJS links irregardless of con
   
   
   
-  <div>Author: Ethan Grantz
-Contains functions that manipulate game progression and also the draw function and info for player interaction with game</div>
+  <div>Author: Ethan Grantz, QiTao Weng</div>
   
   
 
@@ -928,6 +914,55 @@ Contains functions that manipulate game progression and also the draw function a
   
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
+  
+    <div class='border-bottom' id='application_init'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>_init()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>initializes event listeners</p>
+
+    <div class='pre p1 fill-light mt0'>_init()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
   
     <div class='border-bottom' id='applicationmain'>
       <div class="clearfix small pointer toggle-sibling">
@@ -1107,106 +1142,6 @@ Contains functions that manipulate game progression and also the draw function a
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='addeventlistener'>
-      addEventListener
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Makes the boat count selection button visible once everything is loaded</p>
-
-    <div class='pre p1 fill-light mt0'>addEventListener</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='addeventlistener'>
-      addEventListener
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Detects key presses and executes functions based on them</p>
-
-    <div class='pre p1 fill-light mt0'>addEventListener</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='fl m0' id='boat'>
       Boat
     </h3>
@@ -1215,7 +1150,8 @@ Contains functions that manipulate game progression and also the draw function a
   </div>
   
 
-  
+  <p>This is the boat class</p>
+
     <div class='pre p1 fill-light mt0'>new Boat(dim: any, vertical: any, startCoord: any)</div>
   
   
@@ -1223,8 +1159,7 @@ Contains functions that manipulate game progression and also the draw function a
   
   
   
-  <div>Author: Ethan Grantz
-This is the boat class</div>
+  <div>Author: Ethan Grantz</div>
   
   
 
@@ -1235,7 +1170,8 @@ This is the boat class</div>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>dim</span> <code class='quiet'>(any)</code>
-	    
+	    dimension for the boat
+
           </div>
           
         </div>
@@ -1243,7 +1179,8 @@ This is the boat class</div>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>vertical</span> <code class='quiet'>(any)</code>
-	    
+	    orientation of the boat
+
           </div>
           
         </div>
@@ -1251,7 +1188,8 @@ This is the boat class</div>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>startCoord</span> <code class='quiet'>(any)</code>
-	    
+	    starting coordinate of the boat
+
           </div>
           
         </div>
@@ -1475,7 +1413,8 @@ This is the boat class</div>
   </div>
   
 
-  
+  <p>Contains Boat Board and player classes and also the original sketches for the boat board graphics</p>
+
     <div class='pre p1 fill-light mt0'>new BoatBoard(boatNum: any)</div>
   
   
@@ -1483,8 +1422,7 @@ This is the boat class</div>
   
   
   
-  <div>Author: Ethan Grantz
-Contains Boat Board and player classes and also the original sketches for the boat board graphics</div>
+  <div>Author: Ethan Grantz</div>
   
   
 
