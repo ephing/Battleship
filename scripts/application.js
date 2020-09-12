@@ -7,6 +7,7 @@ class Application {
     constructor() {
         this._init();
     }
+
     /**
      * initializes event listeners
      * @listens Document:DOMContentLoaded
@@ -28,21 +29,26 @@ class Application {
                 else player = p2.boatBoard;
                 let selector = document.querySelector("#boatSelect");
                 let boatChoice = parseInt(selector.options[selector.selectedIndex].value) - 1;
-                if (e.code === "ArrowUp") {
-                    player.moveVerti(boatChoice, -1);
+                switch (e.which) {
+                    case 37: //left
+                        player.moveHori(boatChoice, -1);
+                        break;
+                    case 38: //up
+                        player.moveVerti(boatChoice, -1);
+                        break;
+                    case 39: //right
+                        player.moveHori(boatChoice, 1);
+                        break;
+                    case 40: //down
+                        player.moveVerti(boatChoice, 1);
+                        break;
+                    case 32: //space
+                        player.rotator(boatChoice);
+                        break;
+                    default:
+                        return;
                 }
-                if (e.code === "ArrowDown") {
-                    player.moveVerti(boatChoice, 1);
-                }
-                if (e.code === "ArrowLeft") {
-                    player.moveHori(boatChoice, -1);
-                }
-                if (e.code === "ArrowRight") {
-                    player.moveHori(boatChoice, 1);
-                }
-                if (e.code === "Space") {
-                    player.rotator(boatChoice);
-                }
+                e.preventDefault(); //Prevent arrow keys and space from interacting with wrong selectors
                 this.drawBoard(currentPlayer);
             } else if (currentStage === 1) {
                 //controls for if we're doing the shooting part of the game
@@ -81,47 +87,84 @@ class Application {
      * @function
      */
     drawBoard() {
-        document.querySelector("#game").innerHTML = "";
-        document.querySelector("#game").style.visibility = "visible";
-        let topText = "";
-        for (let i = 0; i < 9; i++) {
-            topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
-        }
-        topText += "&nbsp&nbsp&nbsp";
-        for (let i = 0; i < 9; i++) {
-            topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
-        }
-        topText += "<br />_|___|___|___|___|___|___|___|___|___|&nbsp_|___|___|___|___|___|___|___|___|___|<br />";
-        document.querySelector("#game").innerHTML += topText;
+        document.querySelector("#gameBoard").style.visibility = "visible";
         let b;
-        if (currentPlayer === 1) b = p1.boatBoard;
-        else b = p2.boatBoard;
+        if (currentPlayer === 1) {
+            b = p1.boatBoard;
+        } else {
+            b = p2.boatBoard;
+        }
+
         for (let i = 0; i < 9; i++) { //row
-            document.querySelector("#game").innerHTML += (i + 1);
-            //column
-            //hit board
-            for (let j = 0; j < 9; j++) {
-                //add something for when a spot has already been guessed
-                document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
-            }
-            document.querySelector("#game").innerHTML += "|&nbsp" + (i + 1);
-            //boat board
-            for (let j = 0; j < 9; j++) {
+            for (let j = 0; j < 9; j++) { //column
+                //check hitboard info
+                /*
+                if (current player has miss for hit board at this coord) {
+                    document.querySelector('spot1'+i+j) idk make this spot white or something
+                } else if (its a hit) {
+                    make it red
+                }
+                */
                 if (b.isAHit(j, i)) {
                     let bid = b.getBoatID(j, i);
                     if (b.hasBeenHit[i][j]) {
-                        document.querySelector("#game").innerHTML += "|&nbsp<span id=\"hit\">" + bid + "</span>&nbsp";
+                        document.getElementById('spot2' + i + j).className = "hit";
+                        document.getElementById('spot2' + i + j).innerHTML = bid;
                     } else {
-                        document.querySelector("#game").innerHTML += "|&nbsp" + bid + "&nbsp";
+                        document.getElementById('spot2' + i + j).className = "boat";
+                        document.getElementById('spot2' + i + j).innerHTML = bid;
                     }
                 } else {
-                    document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
+                    document.getElementById('spot2' + i + j).className = "ocean";
+                    document.getElementById('spot2' + i + j).innerHTML = "";
                 }
             }
-            document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|";
-            document.querySelector("#game").innerHTML += "&nbsp&nbsp|___|___|___|___|___|___|___|___|___|<br />";
         }
     }
+
+
+    // oldDrawBoard() {
+    //     document.querySelector("#game").innerHTML = "";
+    //     document.querySelector("#game").style.visibility = "visible";
+    //     let topText = "";
+    //     for (let i = 0; i < 9; i++) {
+    //         topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
+    //     }
+    //     topText += "&nbsp&nbsp&nbsp";
+    //     for (let i = 0; i < 9; i++) {
+    //         topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
+    //     }
+    //     topText += "<br />_|___|___|___|___|___|___|___|___|___|&nbsp_|___|___|___|___|___|___|___|___|___|<br />";
+    //     document.querySelector("#game").innerHTML += topText;
+    //     let b;
+    //     if (currentPlayer === 1) b = p1.boatBoard;
+    //     else b = p2.boatBoard;
+    //     for (let i = 0; i < 9; i++) { //row
+    //         document.querySelector("#game").innerHTML += (i + 1);
+    //         //column
+    //         //hit board
+    //         for (let j = 0; j < 9; j++) {
+    //             //add something for when a spot has already been guessed
+    //             document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
+    //         }
+    //         document.querySelector("#game").innerHTML += "|&nbsp" + (i + 1);
+    //         //boat board
+    //         for (let j = 0; j < 9; j++) {
+    //             if (b.isAHit(j, i)) {
+    //                 let bid = b.getBoatID(j, i);
+    //                 if (b.hasBeenHit[i][j]) {
+    //                     document.querySelector("#game").innerHTML += "|&nbsp<span id=\"hit\">" + bid + "</span>&nbsp";
+    //                 } else {
+    //                     document.querySelector("#game").innerHTML += "|&nbsp" + bid + "&nbsp";
+    //                 }
+    //             } else {
+    //                 document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
+    //             }
+    //         }
+    //         document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|";
+    //         document.querySelector("#game").innerHTML += "&nbsp&nbsp|___|___|___|___|___|___|___|___|___|<br />";
+    //     }
+    // }
 
     /**
      * Makes changes to graphics and player controls corresponding to current game stage
@@ -131,9 +174,12 @@ class Application {
     stageInit(stage) {
         if (stage === -1) {
             currentStage = -1;
-            if (currentPlayer === 1) currentPlayer = 2;
-            else currentPlayer = 1;
-            document.querySelector("#game").innerHTML = "";
+            if (currentPlayer === 1) {
+                currentPlayer = 2;
+            } else {
+                currentPlayer = 1;
+            }
+            document.querySelector("#gameBoard").style.visibility = "hidden";
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"application.stageInit(0)\">Confirm</button>";
             document.querySelector("#button").style.visibility = "hidden";
             document.querySelector("#boatSelect").style.visibility = "hidden";
@@ -151,6 +197,7 @@ class Application {
             }
             selector.style.visibility = "visible";
             document.querySelector("#button").style.visibility = "visible";
+            document.querySelector("#gameBoard").style.visibility = "visible";
             this.drawBoard(currentPlayer);
         } else if (stage === 1) {
             currentStage = 1;
