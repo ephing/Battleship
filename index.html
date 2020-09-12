@@ -5,13 +5,13 @@
     <link href="css.css" rel="stylesheet"/>
 </head>
 <body>
-<script src="scripts/main.js"></script>
+<script src="scripts/application.js"></script>
 <script src="scripts/boat.js"></script>
 <script src="scripts/player.js"></script>
-<script src="scripts/listeners.js"></script>
 <div id="game"></div>
-
 <span id="boatCount">How many Boats?</span>
+<script>application = new Application();
+application.init()</script>
 <select id="boatSelect">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -20,11 +20,12 @@
     <option value="5">5</option>
 </select>
 
-<button id="button" onclick="main()" type="button">Confirm</button>
+<button id="button" onclick="application.main()" type="button">Confirm</button>
 
 <!--This is hopefully going to be used in between player turns to ensure privacy, as I dont see
 any way of having true privacy without network capabilities-->
 <div id="playerConfirmation"></div>
+
 </body>
 
 </html>
