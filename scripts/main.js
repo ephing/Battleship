@@ -10,7 +10,7 @@ main = function () {
     let selector = document.querySelector("#boatSelect");
     let boatCount = selector.options[selector.selectedIndex].value;
     selector.style.visibility = "hidden";
-    let currentPlayer = 2;
+    currentPlayer = 2;
     //stage -1: default value, no controls
     //stage 0: placing boats phase
     //stage 1: choosing where to shoot opponent phase
@@ -91,7 +91,7 @@ stageInit = function (stage) {
         let selecter = document.querySelector("#boatSelect");
         selecter.innerHTML = "";
         //I wanted to use the same <select> block for both choosing boatCount and
-        //for selecting which boat to move. This loop resizes the selecter if you choose fewer than 5 boats
+        //for selecting which boat to move. This loop resizes the selector if you choose fewer than 5 boats
         //This is subject to change later as it causes clutter whether I put this here or add another
         //<select> in index.html
         for (let i = 0; i < p1.boatBoard.boatCount; i++) {

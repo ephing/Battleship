@@ -9,7 +9,7 @@ class Boat {
         this.dimension = dim;
         this.isVertical = vertical;
         this.hitCoordinates = [];
-        if (typeof startCoord == 'undefined' || startCoord > 5) startCoord === dim - 1;
+        if (typeof startCoord == 'undefined' || startCoord > 5) startCoord = dim - 1;
         if (typeof vertical == 'undefined') this.isVertical = true;
         for (let i = 0; i < dim; i++) {
             if (vertical) {
