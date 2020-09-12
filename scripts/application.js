@@ -41,7 +41,7 @@ class Application {
                     player.moveHori(boatChoice, 1);
                 }
                 if (e.code === "Space") {
-                    player.rotater(boatChoice);
+                    player.rotator(boatChoice);
                 }
                 this.drawBoard(currentPlayer);
             } else if (currentStage === 1) {
