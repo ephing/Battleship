@@ -113,17 +113,22 @@ drawBoard = function () {
 stageInit = function (stage) {
     if (stage === -1) {
         currentStage = -1;
-        if (currentPlayer === 1) currentPlayer = 2;
-        else currentPlayer = 1;
+        if (currentPlayer === 1) {
+			currentPlayer = 2;
+		}
+        else {
+			currentPlayer = 1;
+		}
         document.querySelector("#gameBoard").style.visibility = "hidden";
         document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"stageInit(0)\">Confirm</button>";
         document.querySelector("#button").style.visibility = "hidden";
-        document.querySelector("#boatSelect").style.visibility = "hidden";
-    } else if (stage === 0) {
+		document.querySelector("#boatSelect").style.visibility = "hidden";
+	} 
+	else if (stage === 0) {
         currentStage = 0;
         document.querySelector("#playerConfirmation").innerHTML = "";
         let selecter = document.querySelector("#boatSelect");
-        selecter.innerHTML = "";
+		selecter.innerHTML = "";
         //I wanted to use the same <select> block for both choosing boatCount and
         //for selecting which boat to move. This loop resizes the selector if you choose fewer than 5 boats
         //This is subject to change later as it causes clutter whether I put this here or add another
@@ -135,7 +140,8 @@ stageInit = function (stage) {
         document.querySelector("#button").style.visibility = "visible";
         document.querySelector("#gameBoard").style.visibility = "visible";
         drawBoard(currentPlayer);
-    } else if (stage === 1) {
+	} 
+	else if (stage === 1) {
         currentStage = 1;
         document.querySelector("#playerConfirmation").innerHTML = "";
     }
