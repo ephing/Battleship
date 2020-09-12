@@ -1,20 +1,26 @@
 /**
- * @author Ethan Grantz
  * Contains functions that manipulate game progression and also the draw function and info for player interaction with game
+ * @author Ethan Grantz, QiTao Weng
+ * @class
  */
 class Application {
-    init() {
-        /**
-         * Makes the boat count selection button visible once everything is loaded
-         */
+    constructor() {
+        this._init();
+    }
+    /**
+     * initializes event listeners
+     * @listens Document:DOMContentLoaded
+     * @listens Document:keydown
+     */
+    _init() {
+        // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#button").style.visibility = "visible";
         });
 
-//codes from https://javascript.info/keyboard-events
-        /**
-         * Detects key presses and executes functions based on them
-         */
+        //codes from https://javascript.info/keyboard-events
+        // Detects key presses and executes functions based on them
+
         document.addEventListener("keydown", (e) => {
             if (currentStage === 0) {
                 let player;
@@ -48,6 +54,7 @@ class Application {
 
     /**
      * Initializes some important game info (plus some other stuff that will be changed later)
+     * @function
      */
     main() {
         let selector = document.querySelector("#boatSelect");
@@ -71,6 +78,7 @@ class Application {
 
     /**
      * Draws player ui in the div block with id="game" (need to add hit board functionality)
+     * @function
      */
     drawBoard() {
         document.querySelector("#game").innerHTML = "";
@@ -118,6 +126,7 @@ class Application {
     /**
      * Makes changes to graphics and player controls corresponding to current game stage
      * @param {number} stage -1,0,or 1, for the various stages of the game
+     * @function
      */
     stageInit(stage) {
         if (stage === -1) {

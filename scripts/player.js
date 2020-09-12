@@ -1,8 +1,7 @@
 /**
- * @author Ethan Grantz
  * Contains Boat Board and player classes and also the original sketches for the boat board graphics
+ * @author Ethan Grantz
  */
-
 class BoatBoard {
     constructor(boatNum) {
         this.boats = [];
