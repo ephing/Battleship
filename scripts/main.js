@@ -39,7 +39,13 @@ drawBoard = function () {
 	for (let i = 0; i < 9; i++){ //row
 		for(let j = 0; j < 9; j++){ //column
 			//check hitboard info
-			
+			/*
+			if (current player has miss for hit board at this coord) {
+				document.querySelector('spot1'+i+j) idk make this spot white or something
+			} else if (its a hit) {
+				make it red
+			}
+			*/		
 			if (b.isAHit(j, i)) {
 				let bid = b.getBoatID(j, i);
 				if(b.hasBeenHit[i][j]) {
