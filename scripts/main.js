@@ -36,22 +36,24 @@ drawBoard = function () {
 		b = p2.boatBoard;
 	}
 
-	for (let i = 0; i < 9; i++){
-		for(let j = 0; j < 9; j++){
+	for (let i = 0; i < 9; i++){ //row
+		for(let j = 0; j < 9; j++){ //column
+			//check hitboard info
+			
 			if (b.isAHit(j, i)) {
 				let bid = b.getBoatID(j, i);
 				if(b.hasBeenHit[i][j]) {
-					document.getElementById('spot'+currentPlayer+i+j).className = "hit";
-					document.getElementById('spot'+currentPlayer+i+j).innerHTML = bid;
+					document.getElementById('spot2'+i+j).className = "hit";
+					document.getElementById('spot2'+i+j).innerHTML = bid;
 				}
 				else {
-					document.getElementById('spot'+currentPlayer+i+j).className = "boat";
-					document.getElementById('spot'+currentPlayer+i+j).innerHTML = bid;
+					document.getElementById('spot2'+i+j).className = "boat";
+					document.getElementById('spot2'+i+j).innerHTML = bid;
 				}
 			}
 			else {
-				document.getElementById('spot'+currentPlayer+i+j).className = "ocean";
-				document.getElementById('spot'+currentPlayer+i+j).innerHTML = "";
+				document.getElementById('spot2'+i+j).className = "ocean";
+				document.getElementById('spot2'+i+j).innerHTML = "";
 			}
 		}
 	}
