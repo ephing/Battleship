@@ -123,7 +123,7 @@ stageInit = function (stage) {
         let selecter = document.querySelector("#boatSelect");
         selecter.innerHTML = "";
         //I wanted to use the same <select> block for both choosing boatCount and
-        //for selecting which boat to move. This loop resizes the selecter if you choose fewer than 5 boats
+        //for selecting which boat to move. This loop resizes the selector if you choose fewer than 5 boats
         //This is subject to change later as it causes clutter whether I put this here or add another
         //<select> in index.html
         for (let i = 0; i < p1.boatBoard.boatCount; i++) {

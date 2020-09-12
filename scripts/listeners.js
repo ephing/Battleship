@@ -22,19 +22,19 @@ document.addEventListener("keydown", (e) => {
         let selector = document.querySelector("#boatSelect");
         let boatChoice = parseInt(selector.options[selector.selectedIndex].value) - 1;
 		switch(e.which) {
-			case 37:
+			case 37: //left
 				player.moveHori(boatChoice, -1);
 				break;
-			case 38:
+			case 38: //up
 				player.moveVerti(boatChoice, -1);
 				break;
-			case 39:
+			case 39: //right
 				player.moveHori(boatChoice, 1);
 				break;
-			case 40: 
+			case 40: //down
 				player.moveVerti(boatChoice, 1);
 				break;
-			case 32:
+			case 32: //space
 				player.rotater(boatChoice);
 				break;
 			default: return;

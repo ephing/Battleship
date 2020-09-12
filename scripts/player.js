@@ -65,8 +65,8 @@ class BoatBoard {
 
     /**
      * Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveHor function
-     * @param {number} index of boat in this.boats array
-     * @param {number} either -1 or 1, for left and right respectively
+     * @param {number} boat index of boat in this.boats array
+     * @param {number} dir either -1 or 1, for left and right respectively
      * return {Boolean} true if able to move, otherwise false
      */
     moveHori(boat, dir) {
@@ -88,8 +88,8 @@ class BoatBoard {
 
     /**
      * Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveVert function
-     * @param {number} index of boat in this.boats array
-     * @param {number} either -1 or 1, for up and down respectively
+     * @param {number} boat index of boat in this.boats array
+     * @param {number} dir either -1 or 1, for up and down respectively
      * return {Boolean} true if able to move, otherwise false
      */
     moveVerti(boat, dir) {
@@ -110,7 +110,7 @@ class BoatBoard {
 
     /**
      * Determines if boat is able to rotate (wouldn't go off map or intersect another boat), and if so, calls the boat's rotate function
-     * @param {number} index of boat in this.boats array
+     * @param {number} boat index of boat in this.boats array
      * return {Boolean} true if able to rotate, otherwise false
      */
     rotater(boat) {
@@ -188,10 +188,10 @@ class Player {
 
     /**
      * Returns a boat so you don't have to do p#.boatBoard.boats[num] every time you want to access a specific boat
-     * @param {number} ranging from 0 to 4, equal to boat length - 1, index of boat in boat array
+     * @param {number} num ranging from 0 to 4, equal to boat length - 1, index of boat in boat array
      * @returns {Object} boat at specified index
      */
-    //is there a way to use the get keyword when there's a parameter? This is a personal curiousity question, doesn't necessarily help the code
+    //is there a way to use the get keyword when there's a parameter? This is a personal curiosity question, doesn't necessarily help the code
     getBoat(num) {
         return this.boatBoard.boats[num];
     }
