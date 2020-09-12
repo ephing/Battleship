@@ -21,21 +21,25 @@ document.addEventListener("keydown", (e) => {
         else player = p2.boatBoard;
         let selector = document.querySelector("#boatSelect");
         let boatChoice = parseInt(selector.options[selector.selectedIndex].value) - 1;
-        if (e.code === "ArrowUp") {
-            player.moveVerti(boatChoice, -1);
-        }
-        if (e.code === "ArrowDown") {
-            player.moveVerti(boatChoice, 1);
-        }
-        if (e.code === "ArrowLeft") {
-            player.moveHori(boatChoice, -1);
-        }
-        if (e.code === "ArrowRight") {
-            player.moveHori(boatChoice, 1);
-        }
-        if (e.code === "Space") {
-            player.rotater(boatChoice);
-        }
+		switch(e.which) {
+			case 37:
+				player.moveHori(boatChoice, -1);
+				break;
+			case 38:
+				player.moveVerti(boatChoice, -1);
+				break;
+			case 39:
+				player.moveHori(boatChoice, 1);
+				break;
+			case 40: 
+				player.moveVerti(boatChoice, 1);
+				break;
+			case 32:
+				player.rotater(boatChoice);
+				break;
+			default: return;
+		}
+		e.preventDefault(); //Prevent arrow keys and space from interacting with wrong selectors
         drawBoard(currentPlayer);
     } else if (currentStage === 1) {
         //controls for if we're doing the shooting part of the game
