@@ -22,6 +22,7 @@
     height: 450px;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
+    text-align: center;
 }
 
 .ocean {
@@ -38,7 +39,6 @@
     height: 45px;
     border-radius: 50%;
     padding: 1px 1px 1px 1px;
-    text-align: center;
 }
 
 .hit {
