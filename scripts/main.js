@@ -9,8 +9,8 @@
 main = function () {
     let selector = document.querySelector("#boatSelect");
     let boatCount = selector.options[selector.selectedIndex].value;
-    selector.style.visibility = "hidden";
-    let currentPlayer = 2;
+	selector.style.visibility = "hidden";
+	currentPlayer = 2;
     //stage -1: default value, no controls
     //stage 0: placing boats phase
     //stage 1: choosing where to shoot opponent phase
@@ -31,7 +31,8 @@ main = function () {
  */
 drawBoard = function () {
     document.querySelector("#game").innerHTML = "";
-    document.querySelector("#game").style.visibility = "visible";
+	document.querySelector("#game").style.visibility = "visible";
+	document.querySelector("#gameBoard").style.visibility = "visible";
     let topText = "";
     for (let i = 0; i < 9; i++) {
         topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);

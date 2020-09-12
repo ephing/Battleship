@@ -22,7 +22,8 @@
     color: red;
 }
 
-.gameBoard {
+#gameBoard {
+	visibility: hidden;
 	content: "";
 	display: table;
 	clear: both;
