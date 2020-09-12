@@ -17,7 +17,7 @@ class BoatBoard {
         this.hasBeenHit = [];
         this.boatCount = boatNum;
         for (let i = 0; i < boatNum; i++) this.boats.push(new Boat(i + 1, true, i));
-        for (let i = 0; i < 9; i++) this.hasBeenHit.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        for (let i = 0; i < 9; i++) this.hasBeenHit.push([0, 1, 0, 0, 0, 0, 0, 0, 0]);
     }
 
     /**

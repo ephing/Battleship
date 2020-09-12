@@ -2,24 +2,8 @@
     visibility: hidden;
 }
 
-#boatSelect {
-
-}
-
 #playerConfirmation {
     position: absolute;
-}
-
-#game {
-    visibility: hidden;
-    /*Lucida Console should be installed on windows by default
-    It was not on Ubuntu 20, so I added DejaVu
-    Other fonts may need to be added for other os*/
-    font-family: "Lucida Console", "DejaVu Sans Mono";
-}
-
-#hit {
-    color: red;
 }
 
 #gameBoard {
