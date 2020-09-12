@@ -32,8 +32,8 @@
 .grid {
 	float: left;
 	display: grid;
-	background: #808080;
-	border: 6px solid #000000;
+	background: black;
+	border: 6px solid white;
 	width: 450px;
 	height: 450px;
 	grid-template-columns: repeat(9, 1fr);
@@ -49,7 +49,7 @@
 }
 
 .boat {
-	background-color: blue;
+	background-color: gray;
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;

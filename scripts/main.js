@@ -26,10 +26,41 @@ main = function () {
     stageInit(-1);
 }
 
+drawBoard = function () {
+	document.querySelector("#gameBoard").style.visibility = "visible";
+	let b;
+    if (currentPlayer === 1) {
+		b = p1.boatBoard;
+	} 
+    else {
+		b = p2.boatBoard;
+	}
+
+	for (let i = 0; i < 9; i++){
+		for(let j = 0; j < 9; j++){
+			if (b.isAHit(j, i)) {
+				let bid = b.getBoatID(j, i);
+				if(b.hasBeenHit[i][j]) {
+					document.getElementById('spot'+currentPlayer+i+j).className = "hit";
+					document.getElementById('spot'+currentPlayer+i+j).innerHTML = bid;
+				}
+				else {
+					document.getElementById('spot'+currentPlayer+i+j).className = "boat";
+					document.getElementById('spot'+currentPlayer+i+j).innerHTML = bid;
+				}
+			}
+			else {
+				document.getElementById('spot'+currentPlayer+i+j).className = "ocean";
+				document.getElementById('spot'+currentPlayer+i+j).innerHTML = "";
+			}
+		}
+	}
+}
+
 /**
  * Draws player ui in the div block with id="game" (need to add hit board functionality)
  */
-drawBoard = function () {
+/*drawOldBoard = function () {
     document.querySelector("#game").innerHTML = "";
 	document.querySelector("#game").style.visibility = "visible";
 	document.querySelector("#gameBoard").style.visibility = "visible";
@@ -71,7 +102,7 @@ drawBoard = function () {
         document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|";
         document.querySelector("#game").innerHTML += "&nbsp&nbsp|___|___|___|___|___|___|___|___|___|<br />";
     }
-}
+}*/
 
 /**
  * Makes changes to graphics and player controls corresponding to current game stage
