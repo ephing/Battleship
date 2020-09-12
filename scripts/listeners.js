@@ -20,20 +20,20 @@ document.addEventListener("keydown", (e) => {
         else player = p2.boatBoard;
         let selector = document.querySelector("#boatSelect");
         let boatChoice = parseInt(selector.options[selector.selectedIndex].value) - 1;
-		switch(e.which) {
-			case 37: //left
+		switch(e.key) {
+			case "ArrowLeft": //left
 				player.moveHori(boatChoice, -1);
 				break;
-			case 38: //up
+			case "ArrowUp": //up
 				player.moveVerti(boatChoice, -1);
 				break;
-			case 39: //right
+			case "ArrowRight": //right
 				player.moveHori(boatChoice, 1);
 				break;
-			case 40: //down
+			case "ArrowDown": //down
 				player.moveVerti(boatChoice, 1);
 				break;
-			case 32: //space
+			case " ": //space
 				player.rotater(boatChoice);
 				break;
 			default: return;
