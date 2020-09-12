@@ -117,7 +117,7 @@ stageInit = function (stage) {
         else {
 			currentPlayer = 1;
 		}
-        document.querySelector("#game").innerHTML = "";
+        document.querySelector("#gameBoard").style.visibility = "hidden";
         document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"stageInit(0)\">Confirm</button>";
         document.querySelector("#button").style.visibility = "hidden";
 		document.querySelector("#boatSelect").style.visibility = "hidden";
@@ -136,6 +136,7 @@ stageInit = function (stage) {
         }
         selecter.style.visibility = "visible";
         document.querySelector("#button").style.visibility = "visible";
+        document.querySelector("#gameBoard").style.visibility = "visible";
         drawBoard(currentPlayer);
 	} 
 	else if (stage === 1) {
