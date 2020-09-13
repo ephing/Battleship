@@ -2,73 +2,57 @@
     visibility: hidden;
 }
 
-#boatSelect {
-
-}
-
 #playerConfirmation {
     position: absolute;
 }
 
-#game {
-    visibility: hidden;
-    /*Lucida Console should be installed on windows by default
-    It was not on Ubuntu 20, so I added DejaVu
-    Other fonts may need to be added for other os*/
-    font-family: "Lucida Console", "DejaVu Sans Mono";
-}
-
-#hit {
-    color: red;
-}
-
 #gameBoard {
-	visibility: hidden;
-	content: "";
-	display: table;
-	clear: both;
+    visibility: hidden;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .grid {
-	float: left;
-	display: grid;
-	background: black;
-	border: 6px solid white;
-	width: 450px;
-	height: 450px;
-	grid-template-columns: repeat(9, 1fr);
-	grid-template-rows: repeat(9, 1fr);
+    float: left;
+    display: grid;
+    background: black;
+    border: 6px solid white;
+    width: 450px;
+    height: 450px;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    text-align: center;
 }
 
 .ocean {
-	background-color: blue;
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	padding: 1px 1px 1px 1px;
+    background-color: blue;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 1px 1px 1px 1px;
 }
 
 .boat {
-	background-color: gray;
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	padding: 1px 1px 1px 1px;
-	text-align: center;
+    background-color: gray;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 1px 1px 1px 1px;
 }
 
 .hit {
-	background-color: red;
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	padding: 1px 1px 1px 1px;
+    background-color: red;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 1px 1px 1px 1px;
 }
 
 .miss {
-	background-color: white;
-	width: 45px;
-	height: 45px;
-	border-radius: 50%;
-	padding: 1px 1px 1px 1px;
+    background-color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 1px 1px 1px 1px;
 }
