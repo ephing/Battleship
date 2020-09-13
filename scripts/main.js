@@ -161,14 +161,13 @@ stageInit = function (stage) {
         document.querySelector("#playerConfirmation").innerHTML = "";
         document.querySelector("#gameBoard").style.visibility = "visible";
         document.querySelector("#boatSelect").style.visibility = "hidden";
-        document.querySelector("#button").style.visibility = "hidden";
         document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"fire()\">Fire</button>";
         
     }
 
 }
 fire = function(){// checkWin needs to be done within this function and boatCount should lose one point for every hit
-    //p1.boatCount = 0; --test for full game runthrough
+    //p1.boatCount = 0;// --test for full game runthrough
     checkWin();
 }
 
@@ -184,6 +183,6 @@ checkWin = function(){
         document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
     }
     else{
-        stageInit(0);
+        document.querySelector("#gameInfo").innerHTML = "" + "</h2><button onclick=\"stageInit(-1)\">Continue</button>";
     }
 }
