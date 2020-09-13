@@ -18,11 +18,17 @@
     display: grid;
     background: black;
     border: 6px solid white;
-    width: 450px;
-    height: 450px;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
+    width: 500px;
+    height: 500px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     text-align: center;
+}
+
+.gridLabel {
+	text-align: center;
+	padding: 15px 0;
+	background: white;
 }
 
 .ocean {
