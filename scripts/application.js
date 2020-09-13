@@ -72,6 +72,7 @@ class Application {
         //stage 1: choosing where to shoot opponent phase
         //this is used so that we can make the keyboard inputs do different things in different phases of the game
         window.currentStage = -1;
+        window.fireStage = false;//used to make the game loop run correctly
         document.querySelector("#boatCount").outerHTML = "";
         window.p1 = new Player(boatCount, 1);
         window.p2 = new Player(boatCount, 2);
@@ -180,9 +181,13 @@ class Application {
                 currentPlayer = 1;
             }
             document.querySelector("#gameBoard").style.visibility = "hidden";
-            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"application.stageInit(0)\">Confirm</button>";
             document.querySelector("#button").style.visibility = "hidden";
             document.querySelector("#boatSelect").style.visibility = "hidden";
+            if (fireStage == false) {
+                document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"application.stageInit(0)\">Confirm</button>";
+            } else {
+                document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn to attack!</h2><button onclick=\"application.stageInit(1)\">Attack</button>";
+            }
         } else if (stage === 0) {
             currentStage = 0;
             document.querySelector("#playerConfirmation").innerHTML = "";
@@ -199,9 +204,35 @@ class Application {
             document.querySelector("#button").style.visibility = "visible";
             document.querySelector("#gameBoard").style.visibility = "visible";
             this.drawBoard(currentPlayer);
+            if (currentPlayer === 2) {
+                fireStage = true;
+            }
         } else if (stage === 1) {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
+            document.querySelector("#gameBoard").style.visibility = "visible";
+            document.querySelector("#boatSelect").style.visibility = "hidden";
+            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"fire()\">Fire</button>";
+
+        }
+    }
+
+    fire() {// checkWin needs to be done within this function and boatCount should lose one point for every hit
+        //p1.boatCount = 0;// --test for full game runthrough
+        checkWin();
+    }
+
+    checkWin() {
+        if (p1.boatCount === 0) {
+            document.querySelector("#gameBoard").style.visibility = "hidden";
+            document.querySelector("#boatSelect").style.visibility = "hidden";
+            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
+        } else if (p2.boatCount === 0) {
+            document.querySelector("#gameBoard").style.visibility = "hidden";
+            document.querySelector("#boatSelect").style.visibility = "hidden";
+            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
+        } else {
+            document.querySelector("#gameInfo").innerHTML = "" + "</h2><button onclick=\"application.stageInit(-1)\">Continue</button>";
         }
     }
 }
