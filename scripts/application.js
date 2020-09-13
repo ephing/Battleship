@@ -19,7 +19,7 @@ class Application {
             document.querySelector("#button").style.visibility = "visible";
         });
 
-        //codes from https://javascript.info/keyboard-events
+        // keyboard key code values from https://javascript.info/keyboard-events
         // Detects key presses and executes functions based on them
 
         document.addEventListener("keydown", (e) => {
