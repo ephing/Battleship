@@ -1,12 +1,11 @@
 /**
- * Contains Hit Board
+ * Contains Hit Board, keeps track of shots taken and landed
  * @author QiTao Weng
  * @class
  */
 class HitBoard {
     /**
      * Constructor for boatBoard
-     * @param {number} boatNum number of boats on the board
      */
     constructor() {
         this.attempt = [];
