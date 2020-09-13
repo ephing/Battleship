@@ -180,10 +180,13 @@ class Application {
         }
     }
 
+    /**
+     * Game stage that allows you to select row and column and fire at a position
+     * @function
+     */
     fire() {
         // checkWin needs to be done within this function and boatCount should lose one point for every hit
         //p1.boatCount = 0;// --test for full game runthrough
-
         //parse selector ints for row and column selection
         let row = document.querySelector("#row");
         let col = document.querySelector("#col");
@@ -191,22 +194,32 @@ class Application {
         let colChoice = parseInt(col.options[col.selectedIndex].value);
         //currentPlayer attacks other player
         if (currentPlayer === 1) {
-            // flags p2 boatBoard's hasBeenHit array for position
-            p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-            // flags attempt for hitBoard
-            p2.hitBoard.attempt[rowChoice][colChoice] = true;
-            // checks if col, row is a hit
-            if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
-                // flags if shot landed for hitBoard
-                p2.hitBoard.hit[rowChoice][colChoice] = true;
-                p2.boatCount -= 1;
+            if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+                document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"application.fire()\">fire</button>";
+                return;
+            } else {
+                // flags p2 boatBoard's hasBeenHit array for position
+                p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                // flags attempt for hitBoard
+                p2.hitBoard.attempt[rowChoice][colChoice] = true;
+                // checks if col, row is a hit
+                if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
+                    // flags if shot landed for hitBoard
+                    p2.hitBoard.hit[rowChoice][colChoice] = true;
+                    p2.boatCount -= 1;
+                }
             }
         } else {
-            p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-            p1.hitBoard.attempt[rowChoice][colChoice] = true;
-            if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
-                p1.hitBoard.hit[rowChoice][colChoice] = true;
-                p1.boatCount -= 1;
+            if (p1.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+                document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"application.fire(-1)\">fire</button>";
+                return;
+            } else {
+                p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                p1.hitBoard.attempt[rowChoice][colChoice] = true;
+                if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
+                    p1.hitBoard.hit[rowChoice][colChoice] = true;
+                    p1.boatCount -= 1;
+                }
             }
         }
         this.checkWin();
