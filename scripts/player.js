@@ -5,8 +5,8 @@
 class Player {
     /**
      * Constructor for Player class
-     * @param boatNum number of boats on the board
-     * @param id player identifier
+     * @param {number} boatNum number of boats on the board
+     * @param {number} id player identifier
      */
     constructor(boatNum, id) {
         this.playerID = id;

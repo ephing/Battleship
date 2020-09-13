@@ -59,7 +59,7 @@ class Application {
     }
 
     /**
-     * Initializes some important game info (plus some other stuff that will be changed later)
+     * Initializes some important game info
      * @function
      */
     main() {
@@ -83,7 +83,7 @@ class Application {
     }
 
     /**
-     * Draws player ui in the div block with id="game" (need to add hit board functionality)
+     * Draws player ui in the div block with id="gameBoard"
      * @function
      */
     drawBoard() {

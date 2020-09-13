@@ -6,23 +6,23 @@
 class Boat {
     /**
      * Constructor for the boat class
-     * @param dim dimension for the boat
-     * @param vertical orientation of the boat
-     * @param startCoord starting coordinate of the boat
+     * @param {number} dim dimension for the boat
+     * @param {boolean} vertical orientation of the boat
+     * @param {number} startColumn starting coordinate of the boat
      */
-    constructor(dim, vertical, startCoord) {
+    constructor(dim, vertical, startColumn) {
         //technically we only need the dim parameter, as we can just make vertical a default and sC can be inferred from dim.
         //however, I added the extra parameters to give creative freedom
         this.dimension = dim;
         this.isVertical = vertical;
         this.hitCoordinates = [];
-        if (typeof startCoord == 'undefined' || startCoord > 5) startCoord = dim - 1;
+        if (typeof startColumn == 'undefined' || startColumn > 5) startColumn = dim - 1;
         if (typeof vertical == 'undefined') this.isVertical = true;
         for (let i = 0; i < dim; i++) {
             if (vertical) {
-                this.hitCoordinates.push([startCoord, i]);
+                this.hitCoordinates.push([startColumn, i]);
             } else {
-                this.hitCoordinates.push([i, startCoord]);
+                this.hitCoordinates.push([i, startColumn]);
             }
         }
     }
