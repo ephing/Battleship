@@ -64,7 +64,7 @@ class Application {
      */
     main() {
         let selector = document.querySelector("#boatSelect");
-        let boatCount = selector.options[selector.selectedIndex].value;
+        let boatCount = parseInt(selector.options[selector.selectedIndex].value);
         selector.style.visibility = "hidden";
         window.currentPlayer = 2;
         //stage -1: default value, no controls
@@ -212,14 +212,38 @@ class Application {
             document.querySelector("#playerConfirmation").innerHTML = "";
             document.querySelector("#gameBoard").style.visibility = "visible";
             document.querySelector("#boatSelect").style.visibility = "hidden";
-            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"fire()\">Fire</button>";
+            document.querySelector("#row").style.visibility = "visible";
+            document.querySelector("#col").style.visibility = "visible";
+            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"application.fire()\">Fire</button>";
+            this.drawBoard(currentPlayer);
 
         }
     }
 
-    fire() {// checkWin needs to be done within this function and boatCount should lose one point for every hit
+    fire() {
+        // checkWin needs to be done within this function and boatCount should lose one point for every hit
         //p1.boatCount = 0;// --test for full game runthrough
-        checkWin();
+
+        //parse selector ints for row and column selection
+        let row = document.querySelector("#row");
+        let col = document.querySelector("#col");
+        let rowChoice = parseInt(row.options[row.selectedIndex].value);
+        let colChoice = parseInt(col.options[col.selectedIndex].value);
+        //currentPlayer attacks other player
+        if (currentPlayer === 1) {
+            // flags p2 boatBoard's hasBeenHit array for position
+            p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+            // checks if col, row is a hit
+            if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
+                p2.boatCount -= 1;
+            }
+        } else {
+            p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+            if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
+                p1.boatCount -= 1;
+            }
+        }
+        this.checkWin();
     }
 
     checkWin() {
