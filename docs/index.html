@@ -1049,7 +1049,7 @@
 
   <p>Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveHor function</p>
 
-    <div class='pre p1 fill-light mt0'>moveHori(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
+    <div class='pre p1 fill-light mt0'>moveHori(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
   
   
 
@@ -1077,7 +1077,6 @@
           <div>
             <span class='code bold'>dir</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    either -1 or 1, for left and right respectively
-return {boolean} true if able to move, otherwise false
 
           </div>
           
@@ -1088,6 +1087,14 @@ return {boolean} true if able to move, otherwise false
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        true if able to move, otherwise false
+
+      
+    
   
 
   
@@ -1122,7 +1129,7 @@ return {boolean} true if able to move, otherwise false
 
   <p>Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveVert function</p>
 
-    <div class='pre p1 fill-light mt0'>moveVerti(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
+    <div class='pre p1 fill-light mt0'>moveVerti(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
   
   
 
@@ -1150,7 +1157,6 @@ return {boolean} true if able to move, otherwise false
           <div>
             <span class='code bold'>dir</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    either -1 or 1, for up and down respectively
-return {boolean} true if able to move, otherwise false
 
           </div>
           
@@ -1161,6 +1167,14 @@ return {boolean} true if able to move, otherwise false
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        true if able to move, otherwise false
+
+      
+    
   
 
   
@@ -1195,7 +1209,7 @@ return {boolean} true if able to move, otherwise false
 
   <p>Determines if boat is able to rotate (wouldn't go off map or intersect another boat), and if so, calls the boat's rotate function</p>
 
-    <div class='pre p1 fill-light mt0'>rotator(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
+    <div class='pre p1 fill-light mt0'>rotator(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
   
   
 
@@ -1214,7 +1228,6 @@ return {boolean} true if able to move, otherwise false
           <div>
             <span class='code bold'>boat</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    index of boat in this.boats array
-return {boolean} true if able to rotate, otherwise false
 
           </div>
           
@@ -1225,6 +1238,14 @@ return {boolean} true if able to rotate, otherwise false
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        true if able to rotate, otherwise false
+
+      
+    
   
 
   
