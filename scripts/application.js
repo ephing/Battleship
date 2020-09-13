@@ -223,6 +223,10 @@ class Application {
         }
     }
 
+    /**
+     * Game stage that allows you to select row and column and fire at a position
+     * @function
+     */
     fire() {
         // checkWin needs to be done within this function and boatCount should lose one point for every hit
         //p1.boatCount = 0;// --test for full game runthrough
@@ -277,6 +281,10 @@ class Application {
         this.checkWin();
     }
 
+    /**
+     * Checks for win condition to terminate game or allow players to play again
+     * @function
+     */
     checkWin() {
         if (p1.boatCount === 0) {
             document.querySelector("#gameBoard").style.visibility = "hidden";
