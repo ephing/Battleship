@@ -9,6 +9,7 @@
 <script src="scripts/boat.js"></script>
 <script src="scripts/player.js"></script>
 <script src="scripts/boatBoard.js"></script>
+<script src="scripts/hitBoard.js"></script>
 <div id="game"></div>
 <span id="boatCount">How many Boats?</span>
 <script>application = new Application(); </script>
@@ -22,11 +23,36 @@
 
 <button id="button" onclick="application.main()" type="button">Confirm</button>
 
+<select id="row" style="visibility: hidden">
+    <option value="0">1</option>
+    <option value="1">2</option>
+    <option value="2">3</option>
+    <option value="3">4</option>
+    <option value="4">5</option>
+    <option value="5">6</option>
+    <option value="6">7</option>
+    <option value="7">8</option>
+    <option value="8">9</option>
+</select>
+<select id="col" style="visibility: hidden">
+    <option value="0">A</option>
+    <option value="1">B</option>
+    <option value="2">C</option>
+    <option value="3">D</option>
+    <option value="4">E</option>
+    <option value="5">F</option>
+    <option value="6">G</option>
+    <option value="7">H</option>
+    <option value="8">I</option>
+</select>
+
+
 <!--This is hopefully going to be used in between player turns to ensure privacy, as I dont see
     any way of having true privacy without network capabilities-->
 <div id="playerConfirmation"></div>
 
 <div id="gameBoard">
+            <div id = "gameInfo"></div>
     <div class="grid" id="player1Board">
         <div class="ocean" id="spot100"></div>
         <div class="ocean" id="spot101"></div>
