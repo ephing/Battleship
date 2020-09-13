@@ -237,54 +237,43 @@ class Application {
         let rowChoice = parseInt(row.options[row.selectedIndex].value);
         let colChoice = parseInt(col.options[col.selectedIndex].value);
         //currentPlayer attacks other player
-        let RightHit = false;
-        while(RightHit === false)
+        let rightHit = false;
+        while(rightHit === false)
         {
-            if (currentPlayer === 1) {
+        if (currentPlayer === 1) {
+            if(p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+                alert("Wrong shooting target, please re-enter");
+                application.stageInit(stage);
+            } else {
                 // flags p2 boatBoard's hasBeenHit array for position
-                if(p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true)
-                {
-                    alert("Wrong shooting target, please re-enter");
-                    application.stageInit(stage);
-                }
-                else
-                {
-                    p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-                    // flags attempt for hitBoard
-                    p2.hitBoard.attempt[rowChoice][colChoice] = true;
-                    RightHit = true;
-                    // checks if col, row is a hit
-                }
+                p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                // flags attempt for hitBoard
+                p2.hitBoard.attempt[rowChoice][colChoice] = true;
+                // checks if col, row is a hit
                 if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
                     // flags if shot landed for hitBoard
                     p2.hitBoard.hit[rowChoice][colChoice] = true;
                     p2.boatCount -= 1;
                 }
+                rightHit = true;
+            }
+        } else {
+            if(p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+                alert("Wrong shooting target, please re-enter");
+                application.stageInit(stage);
             } else {
-                if(p1.boatBoard.hasBeenHit[rowChoice][colChoice] === true)
-                {
-                    alert("Wrong shooting target, please re-enter");
-                    application.stageInit(stage);
+                p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                p1.hitBoard.attempt[rowChoice][colChoice] = true;
+                if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
+                    p1.hitBoard.hit[rowChoice][colChoice] = true;
+                    p1.boatCount -= 1;
                 }
-                else
-                {
-                    p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-                    p1.hitBoard.attempt[rowChoice][colChoice] = true;
-                    RightHit = true;
-                    if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
-                        p1.hitBoard.hit[rowChoice][colChoice] = true;
-                        p1.boatCount -= 1;
-                    }
-                }
+                rightHit = true;
             }
         }
         this.checkWin();
     }
 
-    /**
-     * Checks for win condition to terminate game or allow players to play again
-     * @function
-     */
     checkWin() {
         if (p1.boatCount === 0) {
             document.querySelector("#gameBoard").style.visibility = "hidden";
