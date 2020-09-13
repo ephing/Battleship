@@ -233,23 +233,45 @@ class Application {
         let rowChoice = parseInt(row.options[row.selectedIndex].value);
         let colChoice = parseInt(col.options[col.selectedIndex].value);
         //currentPlayer attacks other player
-        if (currentPlayer === 1) {
-            // flags p2 boatBoard's hasBeenHit array for position
-            p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-            // flags attempt for hitBoard
-            p2.hitBoard.attempt[rowChoice][colChoice] = true;
-            // checks if col, row is a hit
-            if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
-                // flags if shot landed for hitBoard
-                p2.hitBoard.hit[rowChoice][colChoice] = true;
-                p2.boatCount -= 1;
-            }
-        } else {
-            p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-            p1.hitBoard.attempt[rowChoice][colChoice] = true;
-            if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
-                p1.hitBoard.hit[rowChoice][colChoice] = true;
-                p1.boatCount -= 1;
+        let RightHit = false;
+        while(RightHit === false)
+        {
+            if (currentPlayer === 1) {
+                // flags p2 boatBoard's hasBeenHit array for position
+                if(p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true)
+                {
+                    alert("Wrong shooting target, please re-enter");
+                    application.stageInit(stage);
+                }
+                else
+                {
+                    p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                    // flags attempt for hitBoard
+                    p2.hitBoard.attempt[rowChoice][colChoice] = true;
+                    RightHit = true;
+                    // checks if col, row is a hit
+                }
+                if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
+                    // flags if shot landed for hitBoard
+                    p2.hitBoard.hit[rowChoice][colChoice] = true;
+                    p2.boatCount -= 1;
+                }
+            } else {
+                if(p1.boatBoard.hasBeenHit[rowChoice][colChoice] === true)
+                {
+                    alert("Wrong shooting target, please re-enter");
+                    application.stageInit(stage);
+                }
+                else
+                {
+                    p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                    p1.hitBoard.attempt[rowChoice][colChoice] = true;
+                    RightHit = true;
+                    if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
+                        p1.hitBoard.hit[rowChoice][colChoice] = true;
+                        p1.boatCount -= 1;
+                    }
+                }
             }
         }
         this.checkWin();
