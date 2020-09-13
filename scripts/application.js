@@ -102,13 +102,13 @@ class Application {
         for (let i = 0; i < 9; i++) { //row
             for (let j = 0; j < 9; j++) { //column
                 //check hitboard info
-                 if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
-                     document.getElementById('spot1' + i + j).className = "hit";
-                 } else if (opponentb.attempt[i][j]) {
-                     document.getElementById('spot1' + i + j).className = "miss";
-                 } else {
-                     document.getElementById('spot1' + i + j).className = "ocean";
-                 }
+                if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
+                    document.getElementById('spot1' + i + j).className = "hit";
+                } else if (opponentb.attempt[i][j]) {
+                    document.getElementById('spot1' + i + j).className = "miss";
+                } else {
+                    document.getElementById('spot1' + i + j).className = "ocean";
+                }
                 if (b.isAHit(j, i)) {
                     let bid = b.getBoatID(j, i);
                     if (b.hasBeenHit[i][j]) {
@@ -125,50 +125,6 @@ class Application {
             }
         }
     }
-
-
-    // oldDrawBoard() {
-    //     document.querySelector("#game").innerHTML = "";
-    //     document.querySelector("#game").style.visibility = "visible";
-    //     let topText = "";
-    //     for (let i = 0; i < 9; i++) {
-    //         topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
-    //     }
-    //     topText += "&nbsp&nbsp&nbsp";
-    //     for (let i = 0; i < 9; i++) {
-    //         topText += "&nbsp&nbsp&nbsp" + String.fromCharCode(65 + i);
-    //     }
-    //     topText += "<br />_|___|___|___|___|___|___|___|___|___|&nbsp_|___|___|___|___|___|___|___|___|___|<br />";
-    //     document.querySelector("#game").innerHTML += topText;
-    //     let b;
-    //     if (currentPlayer === 1) b = p1.boatBoard;
-    //     else b = p2.boatBoard;
-    //     for (let i = 0; i < 9; i++) { //row
-    //         document.querySelector("#game").innerHTML += (i + 1);
-    //         //column
-    //         //hit board
-    //         for (let j = 0; j < 9; j++) {
-    //             //add something for when a spot has already been guessed
-    //             document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
-    //         }
-    //         document.querySelector("#game").innerHTML += "|&nbsp" + (i + 1);
-    //         //boat board
-    //         for (let j = 0; j < 9; j++) {
-    //             if (b.isAHit(j, i)) {
-    //                 let bid = b.getBoatID(j, i);
-    //                 if (b.hasBeenHit[i][j]) {
-    //                     document.querySelector("#game").innerHTML += "|&nbsp<span id=\"hit\">" + bid + "</span>&nbsp";
-    //                 } else {
-    //                     document.querySelector("#game").innerHTML += "|&nbsp" + bid + "&nbsp";
-    //                 }
-    //             } else {
-    //                 document.querySelector("#game").innerHTML += "|&nbsp&nbsp&nbsp";
-    //             }
-    //         }
-    //         document.querySelector("#game").innerHTML += "|<br />&nbsp|___|___|___|___|___|___|___|___|___|";
-    //         document.querySelector("#game").innerHTML += "&nbsp&nbsp|___|___|___|___|___|___|___|___|___|<br />";
-    //     }
-    // }
 
     /**
      * Makes changes to graphics and player controls corresponding to current game stage
@@ -214,6 +170,7 @@ class Application {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
             document.querySelector("#gameBoard").style.visibility = "visible";
+            document.querySelector("#infoTable").style.visibility = "hidden";
             document.querySelector("#boatSelect").style.visibility = "hidden";
             document.querySelector("#row").style.visibility = "visible";
             document.querySelector("#col").style.visibility = "visible";
