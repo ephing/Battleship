@@ -90,22 +90,25 @@ class Application {
     drawBoard() {
         document.querySelector("#gameBoard").style.visibility = "visible";
         let b;
+        let opponentb;
         if (currentPlayer === 1) {
             b = p1.boatBoard;
+            opponentb = p2.hitBoard;
         } else {
             b = p2.boatBoard;
+            opponentb = p1.hitBoard;
         }
 
         for (let i = 0; i < 9; i++) { //row
             for (let j = 0; j < 9; j++) { //column
                 //check hitboard info
-                /*
-                if (current player has miss for hit board at this coord) {
-                    document.querySelector('spot1'+i+j) idk make this spot white or something
-                } else if (its a hit) {
-                    make it red
-                }
-                */
+                 if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
+                     document.getElementById('spot1' + i + j).className = "hit";
+                 } else if (opponentb.attempt[i][j]) {
+                     document.getElementById('spot1' + i + j).className = "miss";
+                 } else {
+                     document.getElementById('spot1' + i + j).className = "ocean";
+                 }
                 if (b.isAHit(j, i)) {
                     let bid = b.getBoatID(j, i);
                     if (b.hasBeenHit[i][j]) {
@@ -233,13 +236,19 @@ class Application {
         if (currentPlayer === 1) {
             // flags p2 boatBoard's hasBeenHit array for position
             p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+            // flags attempt for hitBoard
+            p2.hitBoard.attempt[rowChoice][colChoice] = true;
             // checks if col, row is a hit
             if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
+                // flags if shot landed for hitBoard
+                p2.hitBoard.hit[rowChoice][colChoice] = true;
                 p2.boatCount -= 1;
             }
         } else {
             p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+            p1.hitBoard.attempt[rowChoice][colChoice] = true;
             if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
+                p1.hitBoard.hit[rowChoice][colChoice] = true;
                 p1.boatCount -= 1;
             }
         }
@@ -256,6 +265,7 @@ class Application {
             document.querySelector("#boatSelect").style.visibility = "hidden";
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
         } else {
+            this.drawBoard(currentPlayer);
             document.querySelector("#gameInfo").innerHTML = "" + "</h2><button onclick=\"application.stageInit(-1)\">Continue</button>";
         }
     }

@@ -11,6 +11,7 @@ class Player {
     constructor(boatNum, id) {
         this.playerID = id;
         this.boatBoard = new BoatBoard(boatNum);
+        this.hitBoard = new HitBoard();
         if(boatNum === 1){//boatNumber is measured by the amount of remaining hits
             this.boatCount = boatNum;
         }
