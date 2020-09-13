@@ -313,7 +313,7 @@
 
   
 
-  <p>Initializes some important game info (plus some other stuff that will be changed later)</p>
+  <p>Initializes some important game info</p>
 
     <div class='pre p1 fill-light mt0'>main()</div>
   
@@ -362,7 +362,7 @@
 
   
 
-  <p>Draws player ui in the div block with id="game" (need to add hit board functionality)</p>
+  <p>Draws player ui in the div block with id="gameBoard"</p>
 
     <div class='pre p1 fill-light mt0'>drawBoard()</div>
   
@@ -489,7 +489,7 @@
 
   <p>This is the boat class</p>
 
-    <div class='pre p1 fill-light mt0'>new Boat(dim: any, vertical: any, startCoord: any)</div>
+    <div class='pre p1 fill-light mt0'>new Boat(dim: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, vertical: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, startColumn: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -506,7 +506,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>dim</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>dim</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    dimension for the boat
 
           </div>
@@ -515,7 +515,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>vertical</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>vertical</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    orientation of the boat
 
           </div>
@@ -524,7 +524,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>startCoord</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>startColumn</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    starting coordinate of the boat
 
           </div>
@@ -752,7 +752,7 @@
 
   <p>Contains Boat Board and also the original sketches for the boat board graphics</p>
 
-    <div class='pre p1 fill-light mt0'>new BoatBoard(boatNum: any)</div>
+    <div class='pre p1 fill-light mt0'>new BoatBoard(boatNum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -769,7 +769,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>boatNum</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>boatNum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    number of boats on the board
 
           </div>
@@ -809,7 +809,7 @@
 
   <p>Detects if 2 boats are intersecting</p>
 
-    <div class='pre p1 fill-light mt0'>intersect(boat1: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, boat2: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+    <div class='pre p1 fill-light mt0'>intersect(boat1: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, boat2: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
   
   
 
@@ -850,7 +850,7 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
         true if boats intersect, otherwise false
 
       
@@ -889,7 +889,7 @@
 
   <p>Detects if there is a boat present at the given coordinates</p>
 
-    <div class='pre p1 fill-light mt0'>isAHit(column: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, row: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+    <div class='pre p1 fill-light mt0'>isAHit(column: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, row: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></div>
   
   
 
@@ -930,7 +930,7 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
         true if boat is present, otherwise false
 
       
@@ -1049,7 +1049,7 @@
 
   <p>Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveHor function</p>
 
-    <div class='pre p1 fill-light mt0'>moveHori(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+    <div class='pre p1 fill-light mt0'>moveHori(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -1077,6 +1077,7 @@
           <div>
             <span class='code bold'>dir</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    either -1 or 1, for left and right respectively
+return {boolean} true if able to move, otherwise false
 
           </div>
           
@@ -1087,14 +1088,6 @@
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
-        true if able to move, otherwise false
-
-      
-    
   
 
   
@@ -1129,7 +1122,7 @@
 
   <p>Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveVert function</p>
 
-    <div class='pre p1 fill-light mt0'>moveVerti(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+    <div class='pre p1 fill-light mt0'>moveVerti(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, dir: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -1157,6 +1150,7 @@
           <div>
             <span class='code bold'>dir</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    either -1 or 1, for up and down respectively
+return {boolean} true if able to move, otherwise false
 
           </div>
           
@@ -1167,14 +1161,6 @@
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
-        true if able to move, otherwise false
-
-      
-    
   
 
   
@@ -1209,7 +1195,7 @@
 
   <p>Determines if boat is able to rotate (wouldn't go off map or intersect another boat), and if so, calls the boat's rotate function</p>
 
-    <div class='pre p1 fill-light mt0'>rotator(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></div>
+    <div class='pre p1 fill-light mt0'>rotator(boat: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -1228,6 +1214,7 @@
           <div>
             <span class='code bold'>boat</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    index of boat in this.boats array
+return {boolean} true if able to rotate, otherwise false
 
           </div>
           
@@ -1238,14 +1225,6 @@
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></code>:
-        true if able to rotate, otherwise false
-
-      
-    
   
 
   
@@ -1293,7 +1272,7 @@
 
   <p>Player class for each player</p>
 
-    <div class='pre p1 fill-light mt0'>new Player(boatNum: any, id: any)</div>
+    <div class='pre p1 fill-light mt0'>new Player(boatNum: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>, id: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -1310,7 +1289,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>boatNum</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>boatNum</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    number of boats on the board
 
           </div>
@@ -1319,7 +1298,7 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>id</span> <code class='quiet'>(any)</code>
+            <span class='code bold'>id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</code>
 	    player identifier
 
           </div>

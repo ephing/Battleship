@@ -6,7 +6,7 @@
 class BoatBoard {
     /**
      * Constructor for boatBoard
-     * @param boatNum number of boats on the board
+     * @param {number} boatNum number of boats on the board
      */
     constructor(boatNum) {
         this.boats = [];
@@ -24,7 +24,7 @@ class BoatBoard {
      * Detects if 2 boats are intersecting
      * @param {Object} boat1 instance of Boat
      * @param {Object} boat2 another instance of Boat
-     * @returns {Boolean} true if boats intersect, otherwise false
+     * @returns {boolean} true if boats intersect, otherwise false
      */
     intersect(boat1, boat2) {
         for (let b1 of boat1.hitCoordinates) {
@@ -39,7 +39,7 @@ class BoatBoard {
      * Detects if there is a boat present at the given coordinates
      * @param {number} column index correlating to column (0-8)
      * @param {number} row index correlating to row (0-8)
-     * @returns {Boolean} true if boat is present, otherwise false
+     * @returns {boolean} true if boat is present, otherwise false
      */
     isAHit(column, row) {
         for (let b of this.boats) {
@@ -71,7 +71,7 @@ class BoatBoard {
      * Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveHor function
      * @param {number} boat index of boat in this.boats array
      * @param {number} dir either -1 or 1, for left and right respectively
-     * @return {Boolean} true if able to move, otherwise false
+     * return {boolean} true if able to move, otherwise false
      */
     moveHori(boat, dir) {
         let tempBoat = new Boat(this.boats[boat].dimension, this.boats[boat].isVertical, 0);
@@ -94,7 +94,7 @@ class BoatBoard {
      * Determines if boat is able to move in the specified direction (wouldn't go off map or intersect another boat), and if so, calls the boat's moveVert function
      * @param {number} boat index of boat in this.boats array
      * @param {number} dir either -1 or 1, for up and down respectively
-     * @return {Boolean} true if able to move, otherwise false
+     * return {boolean} true if able to move, otherwise false
      */
     moveVerti(boat, dir) {
         let tempBoat = new Boat(this.boats[boat].dimension, this.boats[boat].isVertical, 0);
@@ -115,7 +115,7 @@ class BoatBoard {
     /**
      * Determines if boat is able to rotate (wouldn't go off map or intersect another boat), and if so, calls the boat's rotate function
      * @param {number} boat index of boat in this.boats array
-     * @return {Boolean} true if able to rotate, otherwise false
+     * return {boolean} true if able to rotate, otherwise false
      */
     rotator(boat) {
         let tempBoat = new Boat(this.boats[boat].dimension, this.boats[boat].isVertical, 0);
