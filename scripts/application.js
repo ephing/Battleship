@@ -185,6 +185,7 @@ class Application {
      * @function
      */
     fire() {
+    	document.querySelector("#gameInfo").innerHTML = "";
         // checkWin needs to be done within this function and boatCount should lose one point for every hit
         //p1.boatCount = 0;// --test for full game runthrough
         //parse selector ints for row and column selection
@@ -207,6 +208,12 @@ class Application {
                     // flags if shot landed for hitBoard
                     p2.hitBoard.hit[rowChoice][colChoice] = true;
                     p2.boatCount -= 1;
+                    let boatt = p2.getBoat(p2.boatBoard.getBoatID(colChoice, rowChoice) - 1);
+                    boatt.hitCounter++;
+                    if (boatt.hitCounter === boatt.dimension) {
+                    	boatt.isSunk = true;
+                    	document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
+                    }
                 }
             }
         } else {
@@ -219,6 +226,12 @@ class Application {
                 if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
                     p1.hitBoard.hit[rowChoice][colChoice] = true;
                     p1.boatCount -= 1;
+                    let boatt = p1.getBoat(p1.boatBoard.getBoatID(colChoice, rowChoice) - 1);
+                    boatt.hitCounter++;
+                    if (boatt.hitCounter === boatt.dimension) {
+                    	boatt.isSunk = true;
+                    	document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
+                    }
                 }
             }
         }
@@ -236,7 +249,7 @@ class Application {
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
         } else {
             this.drawBoard(currentPlayer);
-            document.querySelector("#gameInfo").innerHTML = "" + "</h2><button onclick=\"application.stageInit(-1)\">Continue</button>";
+            document.querySelector("#gameInfo").innerHTML += "</h2><button onclick=\"application.stageInit(-1)\">Continue</button>";
         }
     }
 }

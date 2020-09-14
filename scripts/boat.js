@@ -16,6 +16,8 @@ class Boat {
         this.dimension = dim;
         this.isVertical = vertical;
         this.hitCoordinates = [];
+        this.hitCounter = 0;
+        this.isSunk = false;
         if (typeof startColumn == 'undefined' || startColumn > 5) startColumn = dim - 1;
         if (typeof vertical == 'undefined') this.isVertical = true;
         for (let i = 0; i < dim; i++) {
