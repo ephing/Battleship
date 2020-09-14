@@ -27,9 +27,6 @@ class Player {
         else if(boatNum === 5){
             this.boatCount = 15;
         }
-
-        
-        //also have like hitBoard or whatever else
     }
 
     /**
@@ -37,7 +34,6 @@ class Player {
      * @param {number} num ranging from 0 to 4, equal to boat length - 1, index of boat in boat array
      * @returns {Object} boat at specified index
      */
-    //is there a way to use the get keyword when there's a parameter? This is a personal curiosity question, doesn't necessarily help the code
     getBoat(num) {
         return this.boatBoard.boats[num];
     }

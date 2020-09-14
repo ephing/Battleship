@@ -11,8 +11,6 @@ class Boat {
      * @param {number} startColumn starting coordinate of the boat
      */
     constructor(dim, vertical, startColumn) {
-        //technically we only need the dim parameter, as we can just make vertical a default and sC can be inferred from dim.
-        //however, I added the extra parameters to give creative freedom
         this.dimension = dim;
         this.isVertical = vertical;
         this.hitCoordinates = [];
@@ -59,7 +57,6 @@ class Boat {
         for (let coord of this.hitCoordinates) {
             if (this.isVertical) {
                 if (coord === this.hitCoordinates[0]) continue;
-                //look at this wacky formula I accidentally made up that gets the right boat coordinates
                 coord[0] = coord[1] + coord[0] - this.hitCoordinates[0][1];
                 coord[1] = this.hitCoordinates[0][1];
             } else {

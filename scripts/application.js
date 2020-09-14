@@ -50,10 +50,7 @@ class Application {
                 }
                 e.preventDefault(); //Prevent arrow keys and space from interacting with wrong selectors
                 this.drawBoard(currentPlayer);
-            } else if (currentStage === 1) {
-                //controls for if we're doing the shooting part of the game
-            }
-            //have a default value like currentStage = -1 for when there should be no controls
+            } 
         });
 
     }
@@ -70,7 +67,7 @@ class Application {
         //stage -1: default value, no controls
         //stage 0: placing boats phase
         //stage 1: choosing where to shoot opponent phase
-        //this is used so that we can make the keyboard inputs do different things in different phases of the game
+        //this is used so that we can make the keyboard work only on boat moving phase
         window.currentStage = -1;
         window.fireStage = false;//used to make the game loop run correctly
         document.querySelector("#boatCount").outerHTML = "";
@@ -109,6 +106,7 @@ class Application {
                 } else {
                     document.getElementById('spot1' + i + j).className = "ocean";
                 }
+                //boatboard info
                 if (b.isAHit(j, i)) {
                     let bid = b.getBoatID(j, i);
                     if (b.hasBeenHit[i][j]) {
@@ -152,10 +150,6 @@ class Application {
             document.querySelector("#playerConfirmation").innerHTML = "";
             let selector = document.querySelector("#boatSelect");
             selector.innerHTML = "";
-            //I wanted to use the same <select> block for both choosing boatCount and
-            //for selecting which boat to move. This loop resizes the selector if you choose fewer than 5 boats
-            //This is subject to change later as it causes clutter whether I put this here or add another
-            //<select> in index.html
             for (let i = 0; i < p1.boatBoard.boatCount; i++) {
                 selector.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />";
             }
