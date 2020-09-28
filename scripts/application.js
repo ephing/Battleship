@@ -88,11 +88,17 @@ class Application {
         document.querySelector("#gameBoard").style.visibility = "visible";
         let b;
         let opponentb;
+        let bHit;
+        
         if (currentPlayer === 1) {
             b = p1.boatBoard;
+            // This is added so that the spots the opponet has hit show up on the players board
+            bHit = p1.hitBoard;
             opponentb = p2.hitBoard;
-        } else {
+        } else {          
             b = p2.boatBoard;
+            // This is added so that the spots the opponet has hit show up on the players board
+            bHit = p2.hitBoard;
             opponentb = p1.hitBoard;
         }
 
@@ -116,7 +122,11 @@ class Application {
                         document.getElementById('spot2' + i + j).className = "boat";
                         document.getElementById('spot2' + i + j).innerHTML = bid;
                     }
-                } else {
+                }
+                else if(bHit.attempt[i][j]){
+                        document.getElementById('spot2' + i + j).className = "miss";
+                }
+                else {
                     document.getElementById('spot2' + i + j).className = "ocean";
                     document.getElementById('spot2' + i + j).innerHTML = "";
                 }
