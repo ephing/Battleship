@@ -73,10 +73,10 @@ class Application {
         document.querySelector("#boatCount").outerHTML = "";
         window.p1 = new Player(boatCount, 1);
         window.p2 = new Player(boatCount, 2);
-
+		
         //this button make the player finish their boat moving phase
-        document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"application.stageInit(-1)\">Confirm</button>";
-
+        document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"select.play(); application.stageInit(-1);\">Confirm</button>";
+		
         this.stageInit(-1);
     }
 
@@ -151,9 +151,9 @@ class Application {
             document.querySelector("#button").style.visibility = "hidden";
             document.querySelector("#boatSelect").style.visibility = "hidden";
             if (fireStage == false) {
-                document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"application.stageInit(0)\">Confirm</button>";
+                document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"select.play(); application.stageInit(0);\">Confirm</button>";
             } else {
-                document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn to attack!</h2><button onclick=\"application.stageInit(1)\">Attack</button>";
+                document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn to attack!</h2><button onclick=\"select.play(); application.stageInit(1);\">Attack</button>";
             }
         } else if (stage === 0) {
             currentStage = 0;
@@ -178,7 +178,7 @@ class Application {
             document.querySelector("#boatSelect").style.visibility = "hidden";
             document.querySelector("#row").style.visibility = "visible";
             document.querySelector("#col").style.visibility = "visible";
-            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"application.fire()\">Fire</button>";
+            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire();\">Fire</button>";
             this.drawBoard(currentPlayer);
 
         }
@@ -189,71 +189,100 @@ class Application {
      * @function
      */
     fire() {
-    	document.querySelector("#gameInfo").innerHTML = "";
-        // checkWin needs to be done within this function and boatCount should lose one point for every hit
-        //p1.boatCount = 0;// --test for full game runthrough
-        //parse selector ints for row and column selection
-        let row = document.querySelector("#row");
-        let col = document.querySelector("#col");
-        let rowChoice = parseInt(row.options[row.selectedIndex].value);
-        let colChoice = parseInt(col.options[col.selectedIndex].value);
-        //currentPlayer attacks other player
-        if (currentPlayer === 1) {
-            if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
-                document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"application.fire()\">fire</button>";
-                return;
-            } else {
-                // flags p2 boatBoard's hasBeenHit array for position
-                p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-                // flags attempt for hitBoard
-                p2.hitBoard.attempt[rowChoice][colChoice] = true;
-                // checks if col, row is a hit
-                if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
-                    // flags if shot landed for hitBoard
-                    p2.hitBoard.hit[rowChoice][colChoice] = true;
-                    p2.boatCount -= 1;
-                    let boatt = p2.getBoat(p2.boatBoard.getBoatID(colChoice, rowChoice) - 1);
-                    boatt.hitCounter++;
-                    if (boatt.hitCounter === boatt.dimension) {
-                    	boatt.isSunk = true;
-                    	document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
-                    }
-                }
-            }
-        } else {
-            if (p1.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
-                document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"application.fire(-1)\">fire</button>";
-                return;
-            } else {
-                p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-                p1.hitBoard.attempt[rowChoice][colChoice] = true;
-                if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
-                    p1.hitBoard.hit[rowChoice][colChoice] = true;
-                    p1.boatCount -= 1;
-                    let boatt = p1.getBoat(p1.boatBoard.getBoatID(colChoice, rowChoice) - 1);
-                    boatt.hitCounter++;
-                    if (boatt.hitCounter === boatt.dimension) {
-                    	boatt.isSunk = true;
-                    	document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
-                    }
-                }
-            }
-        }
-        this.checkWin();
+		document.querySelector("#gameInfo").innerHTML = "";
+		// checkWin needs to be done within this function and boatCount should lose one point for every hit
+		//p1.boatCount = 0;// --test for full game runthrough
+		//parse selector ints for row and column selection
+		let row = document.querySelector("#row");
+		let col = document.querySelector("#col");
+		let rowChoice = parseInt(row.options[row.selectedIndex].value);
+		let colChoice = parseInt(col.options[col.selectedIndex].value);
+		//currentPlayer attacks other player
+		if (currentPlayer === 1) {
+			if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
+				return;
+			} else {
+				document.querySelector("#cannon").play();
+				setTimeout(() => {
+					// flags p2 boatBoard's hasBeenHit array for position
+					p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+					// flags attempt for hitBoard
+					p2.hitBoard.attempt[rowChoice][colChoice] = true;
+					// checks if col, row is a hit
+					if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
+						// flags if shot landed for hitBoard
+						document.querySelector("#explosion").play();
+						p2.hitBoard.hit[rowChoice][colChoice] = true;
+						p2.boatCount -= 1;
+						let boatt = p2.getBoat(p2.boatBoard.getBoatID(colChoice, rowChoice) - 1);
+						boatt.hitCounter++;
+						if (boatt.hitCounter === boatt.dimension) {
+							boatt.isSunk = true;
+							document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
+						}
+					}
+					else {
+						document.querySelector("#miss").play();
+					}
+				}, 2000);
+			}
+		} else {
+			if (p1.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire(-1);\">fire</button>";
+				return;
+			} else {
+				document.querySelector("#cannon").play();
+				setTimeout(() => {
+					p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+					p1.hitBoard.attempt[rowChoice][colChoice] = true;
+					if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
+						document.querySelector("#explosion").play();
+						p1.hitBoard.hit[rowChoice][colChoice] = true;
+						p1.boatCount -= 1;
+						let boatt = p1.getBoat(p1.boatBoard.getBoatID(colChoice, rowChoice) - 1);
+						boatt.hitCounter++;
+						if (boatt.hitCounter === boatt.dimension) {
+							boatt.isSunk = true;
+							document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
+						}
+					}
+					else {
+						document.querySelector("#miss").play();
+					}
+				}, 2000);
+			}
+		}
+		setTimeout(() => {
+			this.checkWin();
+		}, 2000);
     }
 
     checkWin() {
         if (p1.boatCount === 0) {
+			document.querySelector("#victoryMusic").play();
+			document.querySelector("#introMusic").pause();
             document.querySelector("#gameBoard").style.visibility = "hidden";
             document.querySelector("#boatSelect").style.visibility = "hidden";
-            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
+            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else if (p2.boatCount === 0) {
+			document.querySelector("#victoryMusic").play();
+			document.querySelector("#introMusic").pause();
             document.querySelector("#gameBoard").style.visibility = "hidden";
             document.querySelector("#boatSelect").style.visibility = "hidden";
-            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"window.location.reload()\">Play Again</button>";
+            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else {
             this.drawBoard(currentPlayer);
-            document.querySelector("#gameInfo").innerHTML += "</h2><button onclick=\"application.stageInit(-1)\">Continue</button>";
+            document.querySelector("#gameInfo").innerHTML += "</h2><button onclick=\"select.play(); application.stageInit(-1);\">Continue</button>";
         }
     }
 }
+
+
+
+
+
+
+
+
+

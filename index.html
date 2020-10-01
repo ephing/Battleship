@@ -5,6 +5,27 @@
     <link href="css.css" rel="stylesheet"/>
 </head>
 <body>
+<audio id = "introMusic" loop = "true">
+	<source src = "sounds\epicMusic.mp3"></source>
+</audio>
+<audio id = "victoryMusic">
+	<source src = "sounds\victoryMusic.mp3"></source>
+</audio>
+<audio id = "ocean">
+	<source src = "sounds\ocean.mp3"></source>
+</audio>
+<audio id = "cannon">
+	<source src = "sounds\cannon.mp3"></source>
+</audio>
+<audio id = "explosion">
+	<source src = "sounds\explosion.mp3"></source>
+</audio>
+<audio id = "miss">
+	<source src = "sounds\miss.mp3"></source>
+</audio>
+<audio id = "select">
+	<source src = "sounds\select.mp3"></source>
+</audio>
 <script src="scripts/application.js"></script>
 <script src="scripts/boat.js"></script>
 <script src="scripts/player.js"></script>
@@ -21,7 +42,7 @@
     <option value="5">5</option>
 </select>
 
-<button id="button" onclick="application.main()" type="button">Confirm</button>
+<button id="button" onclick="application.main(); introMusic.play(); ocean.play(); select.play()" type="button">Confirm</button>
 
 <select id="col" style="visibility: hidden">
     <option value="0">A</option>
