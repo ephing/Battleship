@@ -26,7 +26,8 @@
         this.setAIBoatBoard(boatNum);        
 
         this.hitBoard = new HitBoard();
-
+        
+        //bottom sets hit points
         if(this.boatNum === 1){
             this.boatCount = this.boatNum;
         }
@@ -42,10 +43,6 @@
         else if(this.boatNum === 5){
             this.boatCount = 15;
         }
-
-
-
-
     }
     
     getBoat(num) {
@@ -88,6 +85,7 @@
                 let row= Math.floor((Math.random()*9)+1);
 
                 if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
+                    //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
                     if(Enemy.boatBoard.isAHit(col,row)){
                         Enemy.boatBoard.hasBeenHit[row][col]=true;
                         
@@ -100,9 +98,6 @@
 
             }
         }
-
-
-
     }
 //sets up boatOnBoard
     setAIBoatBoard(boatNum){
@@ -242,8 +237,7 @@
                 status="You hit the ocean";
             }
             this.hitBoard.hit[row][col]===true;
-            
-        
+
         }
         else{
             status = "this location has already been hit";
