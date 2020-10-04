@@ -16,7 +16,7 @@ class Application {
     _init() {
         // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
-            showHTML("#button");
+            this.showHTML("#button");
         });
 
         // keyboard key code values from https://javascript.info/keyboard-events
@@ -85,7 +85,7 @@ class Application {
      * @function
      */
     drawBoard() {
-        showHTML("#gameBoard");
+        this.showHTML("#gameBoard");
         let b;
         let opponentb;
         let bHit;
@@ -147,9 +147,9 @@ class Application {
             } else {
                 currentPlayer = 1;
             }
-            hideHTML("#gameBoard");
-            hideHTML("#button");
-            hideHTML("#boatSelect");
+            this.hideHTML("#gameBoard");
+            this.hideHTML("#button");
+            this.hideHTML("#boatSelect");
             if (fireStage == false) {
                 document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"select.play(); application.stageInit(0);\">Confirm</button>";
             } else {
@@ -164,8 +164,8 @@ class Application {
                 selector.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />";
             }
             selector.style.visibility = "visible";
-            showHTML("#button");
-            showHTML("#gameBoard");
+            this.showHTML("#button");
+            this.showHTML("#gameBoard");
             this.drawBoard(currentPlayer);
             if (currentPlayer === 2) {
                 fireStage = true;
@@ -173,11 +173,11 @@ class Application {
         } else if (stage === 1) {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
-            showHTML("#gameBoard");
-            hideHTML("#infoTable");
-            hideHTML("#boatSelect");
-            showHTML("#row");
-            showHTML("#col");
+            this.showHTML("#gameBoard");
+            this.hideHTML("#infoTable");
+            this.hideHTML("#boatSelect");
+            this.showHTML("#row");
+            this.showHTML("#col");
             document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire();\">Fire</button>";
             this.drawBoard(currentPlayer);
 
@@ -262,14 +262,14 @@ class Application {
         if (p1.boatCount === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
-            hideHTML("#gameBoard");
-            hideHTML("#boatSelect");
+            this.hideHTML("#gameBoard");
+            this.hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else if (p2.boatCount === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
-            hideHTML("#gameBoard");
-            hideHTML("#boatSelect");
+            this.hideHTML("#gameBoard");
+            this.hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else {
             this.drawBoard(currentPlayer);
@@ -280,11 +280,12 @@ class Application {
     hideHTML(selector) {
         document.querySelector(selector).style.visibility = "hidden";
     }
+    //replaced them with this regex: document.querySelector\(("[^"]*")\).style.visibility = "hidden"
     
      showHTML(selector){
-        document.querySelector(selector).style.visibility = "hidden";
+         document.querySelector(selector).style.visibility = "visible";
      }
-    //use document.querySelector\(("[^"]*")\).style.visibility = "visible" as a regex to replace with the two functions above
+    
 };
 
 
