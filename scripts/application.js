@@ -16,7 +16,7 @@ class Application {
     _init() {
         // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
-            document.querySelector("#button").style.visibility = "visible";
+            showHTML("#button");
         });
 
         // keyboard key code values from https://javascript.info/keyboard-events
@@ -85,7 +85,7 @@ class Application {
      * @function
      */
     drawBoard() {
-        document.querySelector("#gameBoard").style.visibility = "visible";
+        showHTML("#gameBoard");
         let b;
         let opponentb;
         let bHit;
@@ -147,9 +147,9 @@ class Application {
             } else {
                 currentPlayer = 1;
             }
-            document.querySelector("#gameBoard").style.visibility = "hidden";
-            document.querySelector("#button").style.visibility = "hidden";
-            document.querySelector("#boatSelect").style.visibility = "hidden";
+            hideHTML("#gameBoard");
+            hideHTML("#button");
+            hideHTML("#boatSelect");
             if (fireStage == false) {
                 document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"select.play(); application.stageInit(0);\">Confirm</button>";
             } else {
@@ -164,8 +164,8 @@ class Application {
                 selector.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />";
             }
             selector.style.visibility = "visible";
-            document.querySelector("#button").style.visibility = "visible";
-            document.querySelector("#gameBoard").style.visibility = "visible";
+            showHTML("#button");
+            showHTML("#gameBoard");
             this.drawBoard(currentPlayer);
             if (currentPlayer === 2) {
                 fireStage = true;
@@ -173,11 +173,11 @@ class Application {
         } else if (stage === 1) {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
-            document.querySelector("#gameBoard").style.visibility = "visible";
-            document.querySelector("#infoTable").style.visibility = "hidden";
-            document.querySelector("#boatSelect").style.visibility = "hidden";
-            document.querySelector("#row").style.visibility = "visible";
-            document.querySelector("#col").style.visibility = "visible";
+            showHTML("#gameBoard");
+            hideHTML("#infoTable");
+            hideHTML("#boatSelect");
+            showHTML("#row");
+            showHTML("#col");
             document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire();\">Fire</button>";
             this.drawBoard(currentPlayer);
 
@@ -262,21 +262,30 @@ class Application {
         if (p1.boatCount === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
-            document.querySelector("#gameBoard").style.visibility = "hidden";
-            document.querySelector("#boatSelect").style.visibility = "hidden";
+            hideHTML("#gameBoard");
+            hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else if (p2.boatCount === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
-            document.querySelector("#gameBoard").style.visibility = "hidden";
-            document.querySelector("#boatSelect").style.visibility = "hidden";
+            hideHTML("#gameBoard");
+            hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else {
             this.drawBoard(currentPlayer);
             document.querySelector("#gameInfo").innerHTML += "</h2><button onclick=\"select.play(); application.stageInit(-1);\">Continue</button>";
         }
     }
-}
+
+    hideHTML(selector) {
+        document.querySelector(selector).style.visibility = "hidden";
+    }
+    
+     showHTML(selector){
+        document.querySelector(selector).style.visibility = "hidden";
+     }
+    //use document.querySelector\(("[^"]*")\).style.visibility = "visible" as a regex to replace with the two functions above
+};
 
 
 
