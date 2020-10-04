@@ -13,13 +13,13 @@ fire(Enemy); is a method that fires on the player object passed from application
               What is done is the AI checks if it can fire on the player's boatBoard.hasBeenHit and hitBoard.hit arrays
               I checked the row based on an int being passed but I checked the column as a string being passed. Need to modify to display the shot that was made on player board.
 
-receiveShot(row,col); is a method that is used when player attempts to shoot at AI. Checks with both boatBoard and hitBoard.hit arrays
+takeShot(row,col); is a method that is used when player attempts to shoot at AI. Checks with both boatBoard and hitBoard.hit arrays
 
 how to call functions with "ai" object
 
 ai.getBoatCount();
 ai.fire(ExamplePlayer1);
-ai.recieveShot()
+ai.takeShot(1,2)
 
 
  ======================================================
@@ -280,14 +280,14 @@ ai.recieveShot()
 
 
 /**
-*@function recieveShot- Function returns a string "status". Function checks if the "fire" location input from the player is
+*@function takeShot- Function returns a string "status". Function checks if the "fire" location input from the player is
 *                       either 1) an AI boat, 2) Ocean , or 3) has already been attempted
 *@param row- input from application.js, player given row value
 *@param col- input from application.js, player given column value
 *
 *Together both parameters give location of, "shot fired" from player;
 **/
-    receiveShot(row,col){
+    takeShot(row,col){
         //status value started
         let status ="";
 
