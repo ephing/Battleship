@@ -25,7 +25,7 @@ ai.takeShot(1,2)
  ======================================================
  */
 
- class AI{
+class AI{
 
     /**
     * @param difficulty will go from 1 (easy), 2(medium), 3(Hard)
@@ -115,26 +115,30 @@ ai.takeShot(1,2)
         }
 
         if(this.difficulty==3){
+           
             let hitFound=false;
+                
+                for(let row = 0; row<9; row++){
+                    for(let col =0; col<9; col++){
 
-            while(hitFound!=true){
+                        if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
+                            //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
+                            if(Enemy.boatBoard.isAHit(col,row===true)){
+                                Enemy.boatBoard.hasBeenHit[row][col]=true;
 
-                let col = Math.floor((Math.random()*8)+0);
-                let row= Math.floor((Math.random()*8)+0);
-
-                if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
-                    //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
-                    if(Enemy.boatBoard.isAHit(col,row)){
-                        Enemy.boatBoard.hasBeenHit[row][col]=true;
-
-                        Enemy.hitBoard.hit[row][col]=true;
-                        hitFound=true;
+                                Enemy.hitBoard.hit[row][col]=true;
+                                hitFound=true;
+                            }
+                        }
+                        if(hitFound===true){
+                            break;
+                        }
                     }
-
+                    if(hitFound===true){
+                        break;
+                    }
                 }
-
-
-            }
+           
         }
     }
 //sets up boatOnBoard
