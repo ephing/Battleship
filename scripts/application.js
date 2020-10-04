@@ -70,10 +70,13 @@ class Application {
         //this is used so that we can make the keyboard work only on boat moving phase
         window.currentStage = -1;
         window.fireStage = false;//used to make the game loop run correctly
-        document.querySelector("#boatCount").outerHTML = "";
+        //outerHTML
+        document.querySelector("#boatCount").innerHTML = "";
         window.p1 = new Player(boatCount, 1);
         window.p2 = new Player(boatCount, 2);
-		
+        
+        
+
         //this button make the player finish their boat moving phase
         document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"select.play(); application.stageInit(-1);\">Confirm</button>";
 		
@@ -86,6 +89,7 @@ class Application {
      */
     drawBoard() {
         this.showHTML("#gameBoard");
+        this.showHTML("#infoTabel");
         let b;
         let opponentb;
         let bHit;
@@ -148,6 +152,7 @@ class Application {
                 currentPlayer = 1;
             }
             this.hideHTML("#gameBoard");
+            this.hideHTML("#infoTabel");
             this.hideHTML("#button");
             this.hideHTML("#boatSelect");
             if (fireStage == false) {
@@ -166,6 +171,7 @@ class Application {
             selector.style.visibility = "visible";
             this.showHTML("#button");
             this.showHTML("#gameBoard");
+            this.showHTML("#infoTabel");
             this.drawBoard(currentPlayer);
             if (currentPlayer === 2) {
                 fireStage = true;
@@ -173,7 +179,7 @@ class Application {
         } else if (stage === 1) {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
-            this.showHTML("#gameBoard");
+            this.showHTML("#infoTabel");
             this.hideHTML("#infoTable");
             this.hideHTML("#boatSelect");
             this.showHTML("#row");
@@ -263,12 +269,14 @@ class Application {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
             this.hideHTML("#gameBoard");
+            this.hideHTML("#infoTabel");
             this.hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else if (p2.boatCount === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
             this.hideHTML("#gameBoard");
+            this.hideHTML("#infoTabel");
             this.hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else {
@@ -276,6 +284,8 @@ class Application {
             document.querySelector("#gameInfo").innerHTML += "</h2><button onclick=\"select.play(); application.stageInit(-1);\">Continue</button>";
         }
     }
+
+
 
     hideHTML(selector) {
         document.querySelector(selector).style.visibility = "hidden";
