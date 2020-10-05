@@ -229,23 +229,18 @@ class AI_Application {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
 				return;
 			} else {
+                
+                //function below will set ai.hitBoard.hit[rowChoice][colChoice] to true and lower AI hp by one 
                 ai.takeShot(rowChoice,colChoice);
 
 				document.querySelector("#cannon").play();
 				setTimeout(() => {
 					// flags p2 boatBoard's hasBeenHit array for position
-                    ai.hitaray
-                    p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-					// flags attempt for hitBoard
-					p2.hitBoard.attempt[rowChoice][colChoice] = true;
-					// checks if col, row is a hit
-					if (p2.boatBoard.isAHit(colChoice, rowChoice)) {
+   
+					if (ai.hitBoard.hit[rowChoice][colChoice]===false && ai.boatOnBoard[rowChoice][colChoice]!=0) {
 						// flags if shot landed for hitBoard
 						document.querySelector("#explosion").play();
-						p2.hitBoard.hit[rowChoice][colChoice] = true;
-						p2.boatCount -= 1;
-						let boatt = p2.getBoat(p2.boatBoard.getBoatID(colChoice, rowChoice) - 1);
-						boatt.hitCounter++;
+
 						if (boatt.hitCounter === boatt.dimension) {
 							boatt.isSunk = true;
 							document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
