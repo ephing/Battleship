@@ -100,7 +100,7 @@ class AI{
                 let row= Math.floor((Math.random()*8)+0);
                 console.log("attmepting to hit col: " + col + " row: " + row )
                 if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
-
+                    Enemy.hitBoard.attempt[row][col]=true;
                     Enemy.boatBoard.hasBeenHit[row][col]=true;
                     Enemy.hitBoard.hit[row][col]=true;
                     hitFound=true;
@@ -195,7 +195,7 @@ class AI{
                             //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
                             if(Enemy.boatBoard.isAHit(col,row===true)){
                                 Enemy.boatBoard.hasBeenHit[row][col]=true;
-
+                                Enemy.hitBoard.attempt[row][col]=true;
                                 Enemy.hitBoard.hit[row][col]=true;
                                 hitFound=true;
                             }
