@@ -227,6 +227,7 @@ class AI_Application {
 
     aiTurn(){
         console.log("AI turn");
+        ai.fire();
     }
     /**
      * Game stage that allows you to select row and column and fire at a position
