@@ -308,6 +308,21 @@ class PVP_Application {
          document.querySelector(selector).style.visibility = "visible";
      }
     
+
+    updateScorebard(){
+
+        document.querySelector("#p1_score").innerHTML = "test"
+        document.querySelector("#p1_sunk").innerHTML = "test"
+        document.querySelector("#p1_hitCount").innerHTML = "test"
+        document.querySelector("#p1_missCount").innerHTML = "test"
+
+        document.querySelector("#p2_score").innerHTML = "test"
+        document.querySelector("#p2_sunk").innerHTML = "test"
+        document.querySelector("#p2_hitCount").innerHTML = "test"
+        document.querySelector("#p2_missCount").innerHTML = "test"
+
+
+    }
 };
 
 

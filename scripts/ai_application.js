@@ -19,10 +19,10 @@ class AI_Application {
             // this.showHTML("#button");
             // need to make this vissible 
         });
+        console.log("AI App")
 
         window.ai = new AI(difficulty)
 
-        console.log("AI App")
         // keyboard key code values from https://javascript.info/keyboard-events
         // Detects key presses and executes functions based on them
 
@@ -63,6 +63,8 @@ class AI_Application {
      * @function
      */
     main() {
+        console.log("AI App Main")
+
         let selector = document.querySelector("#boatSelect");
         let boatCount = parseInt(selector.options[selector.selectedIndex].value);
         selector.style.visibility = "hidden";
@@ -106,6 +108,36 @@ class AI_Application {
             bHit = p1.hitBoard;
             opponentb = ai.hitBoard;
             // opponentb = p2.hitBoard;
+            for (let i = 0; i < 9; i++) { //row
+                for (let j = 0; j < 9; j++) { //column
+                    //check hitboard info
+                    if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
+                        document.getElementById('spot1' + i + j).className = "hit";
+                    } else if (opponentb.attempt[i][j]) {
+                        document.getElementById('spot1' + i + j).className = "miss";
+                    } else {
+                        document.getElementById('spot1' + i + j).className = "ocean";
+                    }
+                    //boatboard info
+                    if (b.isAHit(j, i)) {
+                        let bid = b.getBoatID(j, i);
+                        if (b.hasBeenHit[i][j]) {
+                            document.getElementById('spot2' + i + j).className = "hit";
+                            document.getElementById('spot2' + i + j).innerHTML = bid;
+                        } else {
+                            document.getElementById('spot2' + i + j).className = "boat";
+                            document.getElementById('spot2' + i + j).innerHTML = bid;
+                        }
+                    }
+                    else if(bHit.attempt[i][j]){
+                            document.getElementById('spot2' + i + j).className = "miss";
+                    }
+                    else {
+                        document.getElementById('spot2' + i + j).className = "ocean";
+                        document.getElementById('spot2' + i + j).innerHTML = "";
+                    }
+                }
+            }
         }
         // } else {          
         //     b = p2.boatBoard;
@@ -114,36 +146,7 @@ class AI_Application {
         //     opponentb = p1.hitBoard;
         // }
 
-        for (let i = 0; i < 9; i++) { //row
-            for (let j = 0; j < 9; j++) { //column
-                //check hitboard info
-                if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
-                    document.getElementById('spot1' + i + j).className = "hit";
-                } else if (opponentb.attempt[i][j]) {
-                    document.getElementById('spot1' + i + j).className = "miss";
-                } else {
-                    document.getElementById('spot1' + i + j).className = "ocean";
-                }
-                //boatboard info
-                if (b.isAHit(j, i)) {
-                    let bid = b.getBoatID(j, i);
-                    if (b.hasBeenHit[i][j]) {
-                        document.getElementById('spot2' + i + j).className = "hit";
-                        document.getElementById('spot2' + i + j).innerHTML = bid;
-                    } else {
-                        document.getElementById('spot2' + i + j).className = "boat";
-                        document.getElementById('spot2' + i + j).innerHTML = bid;
-                    }
-                }
-                else if(bHit.attempt[i][j]){
-                        document.getElementById('spot2' + i + j).className = "miss";
-                }
-                else {
-                    document.getElementById('spot2' + i + j).className = "ocean";
-                    document.getElementById('spot2' + i + j).innerHTML = "";
-                }
-            }
-        }
+
     }
 
     /**
