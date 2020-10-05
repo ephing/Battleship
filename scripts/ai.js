@@ -385,16 +385,15 @@ class AI{
 
 //ties in with ai_application function fire() after checking if boat is to be hit
     isSunk(boatNumCheck){
-        returnVal=true;
 
         for(let i =0; i<9; i++){
             for (let j=0; j<9; j++){
                 if(boatNumCheck===this.boatOnBoard[i][j]){
-                    returnVal=false;
+                    return false;
                 }
             }
         }
-        return returnVal;
+        return true;
     }
 /*    randomCol(num){
         if(num===1){
