@@ -222,10 +222,12 @@ class AI_Application {
 		let colChoice = parseInt(col.options[col.selectedIndex].value);
 		//currentPlayer attacks other player
 		if (currentPlayer === 1) {
-			if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+			if (ai.hitBoard.hit[rowChoice][colChoice] === true) {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
 				return;
 			} else {
+                ai.takeShot(rowChoice,colChoice);
+
 				document.querySelector("#cannon").play();
 				setTimeout(() => {
 					// flags p2 boatBoard's hasBeenHit array for position
@@ -270,7 +272,7 @@ class AI_Application {
             this.hideHTML("#infoTabel");
             this.hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>The AI Wins " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
-        } else if (ai.getBoatCount() === 0) {
+        } else if (ai.AIhp() === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
             this.hideHTML("#gameBoard");
