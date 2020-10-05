@@ -4,8 +4,8 @@
  * @class
  */
 class AI_Application {
-    constructor() {
-        this._init();
+    constructor(difficulty) {
+        this._init(difficulty);
     }
 
     /**
