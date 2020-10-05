@@ -3,6 +3,8 @@
     --bg-gameBoard: #A0A0A0;
     --bg-input: #C0C0C0;
     --bg-game: #202020;
+    --bg-scoreBoard: #a1a1a1;
+
 }
 
 html, body{
@@ -114,6 +116,33 @@ html, body{
     visibility: hidden;
 }
 
+#scoreboard{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+
+    visibility: hidden;
+
+    display: grid;
+    grid-template-rows: .1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "Title Title"
+                         "Player1 Player2";
+    background-color: var(--bg-scoreBoard);
+}
+
+#scoreboard_title{
+    grid-area: Title;
+    text-align: center;
+  
+}
+#ScoreboardP1{
+    margin-left: 50%;
+}
+#ScoreboardP2{
+    margin-left: 50%;
+}
+
 .grid {
     float: left;
     display: grid;
@@ -174,3 +203,4 @@ html, body{
     border-radius: 50%;
     padding: 1px 1px 1px 1px;
 }
+

@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showHTML("#inputs");
         showHTML("#boatCount");
         showHTML("#button")
+        showHTML("#scoreboard")
     }
 });
 

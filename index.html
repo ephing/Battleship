@@ -47,16 +47,16 @@
     <div id="startWrapper">
         <div id="startMessage">
             <h1 id="helloMessage"> Select Mode to start the game!</h1>
-            <button id = "AIMode"> AI Mode </button>
-            
-            <select id = "AIModeSelect">
+            <button id="AIMode"> AI Mode </button>
+
+            <select id="AIModeSelect">
                 <option value="1">Easy</option>
                 <option value="2">Medium</option>
                 <option value="3">Hard</option>
             </select>
 
-            <button id = "playerMode"> 2 Player Mode</button>
-        </div>    
+            <button id="playerMode"> 2 Player Mode</button>
+        </div>
     </div>
 
 
@@ -80,7 +80,7 @@
 
             <div id="gameInfo"></div>
             <!-- hidden -->
-            <select id="col" > 
+            <select id="col">
                 <option value="0">A</option>
                 <option value="1">B</option>
                 <option value="2">C</option>
@@ -91,7 +91,7 @@
                 <option value="7">H</option>
                 <option value="8">I</option>
             </select>
-                        <!-- hidden -->
+            <!-- hidden -->
 
             <select id="row">
                 <option value="0">1</option>
@@ -112,22 +112,22 @@
             <div id="playerConfirmation"></div>
 
 
-        <div id="infoTabel">
-            <table class="w3-table" id="infoTable">
-                <tr>
-                    <th>Key</th>
-                    <th>Function</th>
-                </tr>
-                <tr>
-                    <td>Arrow Keys</td>
-                    <td>Move ship</td>
-                </tr>
-                <tr>
-                    <td>Spacebar</td>
-                    <td>Rotate Ship</td>
-                </tr>
-            </table>
-        </div>
+            <div id="infoTabel">
+                <table class="w3-table" id="infoTable">
+                    <tr>
+                        <th>Key</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td>Arrow Keys</td>
+                        <td>Move ship</td>
+                    </tr>
+                    <tr>
+                        <td>Spacebar</td>
+                        <td>Rotate Ship</td>
+                    </tr>
+                </table>
+            </div>
 
         </div>
 
@@ -350,28 +350,69 @@
 
         </div> <!-- GameBoard  -->
 
+        <!-- Scoreboard -->
+    <div id="scoreboard">
+        <h3 id = "scoreboard_title">Score:</h3>
+            
+            <div id="ScoreboardP1">
+                <div id = "zone_p1_Name"><h4>Player #1</h4></div>
+                <div id = "zone_p1_score">
+                    <strong>Ships Afloat:</strong>
+                    <span id = "p1_score">?</span>
+                </div>
 
+
+                <div id = "zone_p1_sunk">
+                    <strong>Ships Sunk:</strong>
+                    <span id = "p1_sunk">?</span>
+                </div>
+
+                <div id = "zone_p1_hitCount">
+                    <strong>Hits:</strong>
+                    <span id = "p1_hitCount">?</span>
+                </div>
+
+                <div id = "zone_p1_missCount">
+                    <strong>Misses:</strong>
+                    <span id = "p1_missCount">?</span>
+                </div>
+            </div> 
+                
+
+
+            <div id="ScoreboardP2">
+                <div id = "zone_p2_Name"><h4>Player #2</h4></div>
+                
+                <div id = "zone_p2_score">
+                    <strong>Ships Afloat:</strong>
+                    <span id = "p2_score">?</span>
+                </div>
+            
+            
+                <div id = "zone_p2_sunk">
+                    <strong>Ships Sunk:</strong>
+                    <span id = "p2_sunk">?</span>
+                </div>
+            
+                <div id = "zone_p2_hitCount">
+                    <strong>Hits:</strong>
+                    <span id = "p2_hitCount">?</span>
+                </div>
+            
+                <div id = "zone_p2_missCount">
+                    <strong>Misses:</strong>
+                    <span id = "p2_missCount">?</span>
+                </div>
+            </div> 
+
+
+
+       
+    </div>
 
     </div>
 
-    <!-- Scoreboard -->
-    <div id = "Scoreboard">
-      <h3>
-        Score:<br>
-        <br>
-        Player #1:<br>
-          Ships Afloat: <strong id = "player1Score">?</strong> <br>
-          Ships Sunk: <strong id = "player1ShipsSunk">?</strong> <br>
-          Hits: <strong id = "player1HitCount">?</strong> <br>
-          Misses: <strong id = "player1MissCount">?</strong> <br>
-          <br>
-        Player #2: <br>
-          Ships Afloat: <strong id = "player2Score">?</strong> <br>
-          Ships Sunk: <strong id = "player2ShipsSunk">?</strong> <br>
-          Hits: <strong id = "player2HitCount">?</strong> <br>
-          Misses: <strong id = "player2MissCount">?</strong> <br>
-      </h3>
-    </div>
+    
 
 
 </body>
