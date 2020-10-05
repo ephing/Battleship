@@ -98,7 +98,7 @@ class AI{
 
                 let col = Math.floor((Math.random()*8)+0);
                 let row= Math.floor((Math.random()*8)+0);
-
+                console.log("attmepting to hit col: " + col + " row: " + row )
                 if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
 
                     Enemy.boatBoard.hasBeenHit[row][col]=true;

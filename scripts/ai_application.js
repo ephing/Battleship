@@ -102,6 +102,13 @@ class AI_Application {
         let opponentb;
         let bHit;
         
+        /*
+        the top array is the ai.boatOnBoard[] array, 0's are sea, the numbers are boats
+        the bottom array is the ai.hitBoard,hit[] array
+        showing where it has been hit from player 1
+        bool tracker showing where everything has been hit
+        */
+
         if (currentPlayer === 1) {
             b = p1.boatBoard;
             // This is added so that the spots the opponet has hit show up on the players board
@@ -113,7 +120,7 @@ class AI_Application {
                     //check hitboard info
                     if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
                         document.getElementById('spot1' + i + j).className = "hit";
-                    } else if (opponentb.attempt[i][j]) {
+                    } else if (opponentb.hit[i][j]) {
                         document.getElementById('spot1' + i + j).className = "miss";
                     } else {
                         document.getElementById('spot1' + i + j).className = "ocean";
@@ -227,7 +234,7 @@ class AI_Application {
 
     aiTurn(){
         console.log("AI turn");
-        ai.fire();
+        ai.fire(p1);
     }
     /**
      * Game stage that allows you to select row and column and fire at a position
