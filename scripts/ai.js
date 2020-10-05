@@ -183,10 +183,11 @@ class AI{
 
                         if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
                             //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
-                            if(Enemy.boatBoard.isAHit(col,row===true)){
+                            if(Enemy.boatBoard.isAHit(col,row)===true){
                                 Enemy.boatBoard.hasBeenHit[row][col]=true;
                                 Enemy.hitBoard.attempt[row][col]=true;
                                 Enemy.hitBoard.hit[row][col]=true;
+								Enemy.boatCount--;
                                 hitFound=true;
                             }
                         }
