@@ -17,7 +17,7 @@ class AI_Application {
         // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
             // this.showHTML("#button");
-            // need to make this vissible 
+            // need to make this vissible
         });
         console.log("AI App")
 
@@ -53,7 +53,7 @@ class AI_Application {
                 }
                 e.preventDefault(); //Prevent arrow keys and space from interacting with wrong selectors
                 this.drawBoard(currentPlayer);
-            } 
+            }
         });
 
     }
@@ -82,12 +82,12 @@ class AI_Application {
 
 
         // window.p2 = new Player(boatCount, 2);
-        
-        
+
+
 
         //this button make the player finish their boat moving phase
         document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"select.play(); application.stageInit(-1);\">Confirm</button>";
-		
+
         this.stageInit(-1);
     }
 
@@ -101,7 +101,7 @@ class AI_Application {
         let b;
         let opponentb;
         let bHit;
-        
+
         /*
         the top array is the ai.boatOnBoard[] array, 0's are sea, the numbers are boats
         the bottom array is the ai.hitBoard,hit[] array
@@ -146,7 +146,7 @@ class AI_Application {
                 }
             }
         }
-        // } else {          
+        // } else {
         //     b = p2.boatBoard;
         //     // This is added so that the spots the opponet has hit show up on the players board
         //     bHit = p2.hitBoard;
@@ -163,21 +163,21 @@ class AI_Application {
         //stage 0: placing boats phase
         //stage 1: choosing where to shoot opponent phase
         //this is used so that we can make the keyboard work only on boat moving phase
-     * 
+     *
      * @function
      */
     stageInit(stage) {
         if (stage === -1) {
             currentStage = -1;
             if (currentPlayer === 1) {
-                
-                
+
+
                 // currentPlayer = 2;
             } else {
                 // AI's turn
-                
 
-                
+
+
                 currentPlayer = 1;
             }
             this.hideHTML("#gameBoard");
@@ -190,7 +190,7 @@ class AI_Application {
             try {
                 this.hideHTML("#continueButton");
             } catch (error) {
-                
+
             }
 
             if (fireStage == false) {
@@ -212,11 +212,11 @@ class AI_Application {
                 this.showHTML("#gameBoard");
                 this.showHTML("#infoTabel");
                 this.drawBoard(currentPlayer);
-                
+
                 fireStage = true;
-                
+
             }
-           
+
         } else if (stage === 1) {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
@@ -231,7 +231,7 @@ class AI_Application {
 
         }
     }
-
+//switches to AI's turn
     aiTurn(){
         console.log("AI turn");
         ai.fire(p1);
@@ -240,6 +240,8 @@ class AI_Application {
      * Game stage that allows you to select row and column and fire at a position
      * @function
      */
+
+//fires missles
     fire() {
 		document.querySelector("#gameInfo").innerHTML = "";
 		// checkWin needs to be done within this function and boatCount should lose one point for every hit
@@ -249,22 +251,22 @@ class AI_Application {
 		let col = document.querySelector("#col");
 		let rowChoice = parseInt(row.options[row.selectedIndex].value);
 		let colChoice = parseInt(col.options[col.selectedIndex].value);
-        
+
         //currentPlayer attacks other player
 		if (currentPlayer === 1) {
 			if (ai.hitBoard.hit[rowChoice][colChoice] === true) {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
 				return;
 			} else {
-                
 
-                //function below will set ai.hitBoard.hit[rowChoice][colChoice] to true and lower AI hp by one 
+
+                //function below will set ai.hitBoard.hit[rowChoice][colChoice] to true and lower AI hp by one
                 ai.takeShot(rowChoice,colChoice);
 
 				document.querySelector("#cannon").play();
 				setTimeout(() => {
 					// flags p2 boatBoard's hasBeenHit array for position
-   
+
 					if (ai.boatOnBoard[rowChoice][colChoice]!=0) {
                         // flags if shot landed for hitBoard
                         let boatsink=ai.boatOnBoard[rowChoice][colChoice];
@@ -285,13 +287,14 @@ class AI_Application {
         {
             // to-do: AI
         }
-        
 
+//runs checkWin function
 		setTimeout(() => {
 			this.checkWin();
 		}, 2000);
     }
 
+//checks for a win
     checkWin() {
         if (p1.boatCount === 0) {
 			document.querySelector("#victoryMusic").play();
@@ -314,23 +317,14 @@ class AI_Application {
     }
 
 
-
+//hides HTML
     hideHTML(selector) {
         document.querySelector(selector).style.visibility = "hidden";
     }
     //replaced them with this regex: document.querySelector\(("[^"]*")\).style.visibility = "hidden"
-    
+//shows HTML
      showHTML(selector){
          document.querySelector(selector).style.visibility = "visible";
      }
-    
+
 };
-
-
-
-
-
-
-
-
-
