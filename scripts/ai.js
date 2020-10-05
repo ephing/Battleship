@@ -13,19 +13,19 @@ fire(Enemy); is a method that fires on the player object passed from application
               What is done is the AI checks if it can fire on the player's boatBoard.hasBeenHit and hitBoard.hit arrays
               I checked the row based on an int being passed but I checked the column as a string being passed. Need to modify to display the shot that was made on player board.
 
-receiveShot(row,col); is a method that is used when player attempts to shoot at AI. Checks with both boatBoard and hitBoard.hit arrays
+takeShot(row,col); is a method that is used when player attempts to shoot at AI. Checks with both boatBoard and hitBoard.hit arrays
 
 how to call functions with "ai" object
 
 ai.getBoatCount();
 ai.fire(ExamplePlayer1);
-ai.recieveShot()
+ai.takeShot(1,2)
 
 
  ======================================================
  */
 
- class AI{
+class AI{
 
     /**
     * @param difficulty will go from 1 (easy), 2(medium), 3(Hard)
@@ -39,10 +39,10 @@ ai.recieveShot()
         this.boatOnBoard=[];
 
         for(let i=0; i<9; i++){
-            for(let j=0; j<9; j++){
+
         //Constructor zeroe's out boatOnBoard 9x9 board
-                this.boatOnBoard[i][j]=0;
-            }
+                this.boatOnBoard.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+            
         }
 
         /**
@@ -52,7 +52,7 @@ ai.recieveShot()
         *@object HitBoard is initialized, this will hold .hit array which see's attempts from player
         **/
         this.boatNum=Math.floor((Math.random()*5)+1);
-        this.setAIBoatBoard(boatNum);
+        this.setAIBoatBoard(this.boatNum);
 
         this.hitBoard = new HitBoard();
 
@@ -94,10 +94,10 @@ ai.recieveShot()
 
             let hitFound=false;
 
-            while(hitFound=false){
+            while(hitFound!=true){
 
-                let col = this.randomCol(Math.floor((Math.random()*9)+1));
-                let row= Math.floor((Math.random()*9)+1);
+                let col = Math.floor((Math.random()*8)+0);
+                let row= Math.floor((Math.random()*8)+0);
 
                 if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
 
@@ -115,33 +115,37 @@ ai.recieveShot()
         }
 
         if(this.difficulty==3){
+           
             let hitFound=false;
+                
+                for(let row = 0; row<9; row++){
+                    for(let col =0; col<9; col++){
 
-            while(hitFound=false){
+                        if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
+                            //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
+                            if(Enemy.boatBoard.isAHit(col,row===true)){
+                                Enemy.boatBoard.hasBeenHit[row][col]=true;
 
-                let col = this.randomCol(Math.floor((Math.random()*9)+1));
-                let row= Math.floor((Math.random()*9)+1);
-
-                if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
-                    //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
-                    if(Enemy.boatBoard.isAHit(col,row)){
-                        Enemy.boatBoard.hasBeenHit[row][col]=true;
-
-                        Enemy.hitBoard.hit[row][col]=true;
-                        hitFound=true;
+                                Enemy.hitBoard.hit[row][col]=true;
+                                hitFound=true;
+                            }
+                        }
+                        if(hitFound===true){
+                            break;
+                        }
                     }
-
+                    if(hitFound===true){
+                        break;
+                    }
                 }
-
-
-            }
+           
         }
     }
 //sets up boatOnBoard
     setAIBoatBoard(boatNum){
-
-        for(let bNum=5; bNum>0; bNum--){
-
+        console.log(boatNum);
+        for(let bNum=boatNum; bNum>0; bNum--){
+     /** */       console.log(bNum);
             if(bNum===5){
 
                 let vert1horz2= Math.floor((Math.random()*2)+1);
@@ -160,33 +164,34 @@ ai.recieveShot()
                 }
 
             }
-            else{
+            if(bNum<5){
                 let boatPlaced=false;
-                while(boatPlaced=false){
+                while(boatPlaced!=true){
                     let vert1horz2= Math.floor((Math.random()*2)+1);
                     let col = Math.floor((Math.random()*8)+0);
                     let row= Math.floor((Math.random()*8)+0);
-                    if(canBeSet(row,col,bNum,vert1horz2)!=0){
 
-                        if(this.canBeSet(row,col,bNum,vert1horz2)=8){
-                            for(let upn=row; up<row+bNum; up++){
+                    if(this.canBeSet(row,col,bNum,vert1horz2)!=0){
+
+                        if(this.canBeSet(row,col,bNum,vert1horz2)===8){
+                            for(let upn=row; upn<row+bNum; upn++){
                                 this.boatOnBoard[upn][col]=bNum;
 
                             }
                         }
-                        if(this.canBeSet(row,col,bNum,vert1horz2)=2){
-                            for(let downn=row; down>row-bNum; down--){
-                                this.boatOnBoard[downn][col]=bNum;
-                            }
-                        }
-                        if(this.canBeSet(row,col,bNum,vert1horz2)=4){
-                            for(let leftn=col; left>col-bNum; left--){
+     //                   if(this.canBeSet(row,col,bNum,vert1horz2)===2){
+       //                     for(let downn=row; downn>row-bNum; downn--){
+         //                       this.boatOnBoard[downn][col]=bNum;
+           //                 }
+             //           }
+                        if(this.canBeSet(row,col,bNum,vert1horz2)===4){
+                            for(let leftn=col; leftn>col-bNum; leftn--){
                                 this.boatOnBoard[row][leftn]=bNum;
 
                             }
                         }
-                        if(this.canBeSet(row,col,bNum,vert1horz2)=6){
-                            for(let rightn=col; right<col+bNum; right++){
+                        if(this.canBeSet(row,col,bNum,vert1horz2)===6){
+                            for(let rightn=col; rightn<col+bNum; rightn++){
                                 this.boatOnBoard[row][rightn]=bNum;
                             }
                         }
@@ -215,38 +220,52 @@ ai.recieveShot()
         let code=0
         if(vert1ORhorz2===1){
             let up=true;
-            let down=true;
-            for(let upn=row; up<row+bNum; up++){
+       //     let down=true;
+            
+      //      if(row-bNum<0){
+        //        down=false;
+          //  }
+            if(row+bNum>8){
+                up=false;
+            }
+            for(let upn=row; upn<row+bNum; upn++){
                 if(this.boatOnBoard[upn][col]!=0){
                     up=false;
                 }
 
             }
 
-            for(let downn=row; down>row-bNum; down--){
-                if(this.boatOnBoard[downn][col]!=0){
-                    down=false;
-                }
-            }
+ //           for(let downn=row; downn>row-bNum ; downn--){
+   //             if(this.boatOnBoard[downn][col]!=0){
+     //               down = false;
+       //         }
+         //   }
 
             if(up===true){
                 code=8;
             }
-            if(down===true){
-                code =2;
-            }
+      //      if(down===true){
+        //        code =2;
+          //  }
 
         }
         else{
-            left=true;
-            right=true;
+           let left=true;
+            let right=true;
 
-            for(let leftn=col; left>col-bNum; left--){
+            if(col-bNum<0){
+                left=false;
+            }
+            if(col+bNum>8){
+                right=false;
+            }
+
+            for(let leftn=col; leftn>col-bNum; leftn--){
                 if(this.boatOnBoard[row][leftn]!=0){
                     left = false;
                 }
             }
-            for(let rightn=col; right<col+bNum; right++){
+            for(let rightn=col; rightn<col+bNum; rightn++){
                 if(this.boatOnBoard[row][rightn]!=0){
                     right=false;
                 }
@@ -265,28 +284,32 @@ ai.recieveShot()
 
 
 /**
-*@function recieveShot- Function returns a string "status". Function checks if the "fire" location input from the player is
+*@function takeShot- Function returns a string "status". Function checks if the "fire" location input from the player is
 *                       either 1) an AI boat, 2) Ocean , or 3) has already been attempted
 *@param row- input from application.js, player given row value
 *@param col- input from application.js, player given column value
 *
 *Together both parameters give location of, "shot fired" from player;
 **/
-    receiveShot(row,col){
+    takeShot(row,col){
         //status value started
         let status ="";
 
         /*Does a check to see if the AI's hitBoard.hit board
         */
         if(this.hitBoard.hit[row][col]===false){
+            
             if(this.boatOnBoard[row][col]!=0){
                 status="You hit a boat that belongs to the AI!!";
                 this.boatCount=this.boatCount-1;
+                this.hitBoard.hit[row][col]=true;
             }
             else{
                 status="You hit the ocean";
+                this.hitBoard.hit[row][col]=true;
             }
-            this.hitBoard.hit[row][col]===true;
+            
+            
 
         }
         else{
@@ -296,7 +319,7 @@ ai.recieveShot()
         return status;
     }
 
-    randomCol(num){
+/*    randomCol(num){
         if(num===1){
             return "A"
         }
@@ -325,5 +348,5 @@ ai.recieveShot()
             return "I"
         }
 
-    }
+    }*/
  }
