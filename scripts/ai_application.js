@@ -299,7 +299,7 @@ class AI_Application {
             this.hideHTML("#gameBoard");
             this.hideHTML("#infoTabel");
             this.hideHTML("#boatSelect");
-            document.querySelector("#playerConfirmation").innerHTML = "<h2>The AI Wins " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
+            document.querySelector("#playerConfirmation").innerHTML = "<h2>The AI Wins " + " !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else if (ai.AIhp() === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
