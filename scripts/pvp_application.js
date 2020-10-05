@@ -310,10 +310,12 @@ class PVP_Application {
 
     updateScorebard(){
 
-        document.querySelector("#zone_p1_score").innerHTML = "boatCount";
+        document.querySelector("#zone_p1_score").innerHTML = p1.boatCount;
         document.querySelector("#zone_p1_sunk").innerHTML = "isSunk";
         document.querySelector("#zone_p1_hitCount").innerHTML = "hitCounter";
         document.querySelector("#zone_p1_missCount").innerHTML = "attempt";
+
+        
         document.querySelector("#zone_p2_score").innerHTML = "boatCount";
         document.querySelector("#zone_p2_sunk").innerHTML = "isSunk";
         document.querySelector("#zone_p2_hitCount").innerHTML = "hitCounter";
