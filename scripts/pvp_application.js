@@ -17,7 +17,7 @@ class PVP_Application {
         // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
             // this.showHTML("#button");
-            // need to make this vissible 
+            // need to make this vissible
         });
 
         console.log("PVP App")
@@ -53,7 +53,7 @@ class PVP_Application {
                 }
                 e.preventDefault(); //Prevent arrow keys and space from interacting with wrong selectors
                 this.drawBoard(currentPlayer);
-            } 
+            }
         });
 
     }
@@ -77,12 +77,12 @@ class PVP_Application {
         document.querySelector("#boatCount").innerHTML = "";
         window.p1 = new Player(boatCount, 1);
         window.p2 = new Player(boatCount, 2);
-        
-        
+
+
 
         //this button make the player finish their boat moving phase
         document.querySelector("#button").outerHTML = "<button id=\"button\" type=\"button\" onclick=\"select.play(); application.stageInit(-1);\">Confirm</button>";
-		
+
         this.stageInit(-1);
     }
 
@@ -96,13 +96,13 @@ class PVP_Application {
         let b;
         let opponentb;
         let bHit;
-        
+
         if (currentPlayer === 1) {
             b = p1.boatBoard;
             // This is added so that the spots the opponet has hit show up on the players board
             bHit = p1.hitBoard;
             opponentb = p2.hitBoard;
-        } else {          
+        } else {
             b = p2.boatBoard;
             // This is added so that the spots the opponet has hit show up on the players board
             bHit = p2.hitBoard;
@@ -163,7 +163,7 @@ class PVP_Application {
             try {
                 this.hideHTML("#continueButton");
             } catch (error) {
-                
+
             }
 
             if (fireStage == false) {
@@ -303,33 +303,24 @@ class PVP_Application {
         document.querySelector(selector).style.visibility = "hidden";
     }
     //replaced them with this regex: document.querySelector\(("[^"]*")\).style.visibility = "hidden"
-    
+
      showHTML(selector){
          document.querySelector(selector).style.visibility = "visible";
      }
-    
 
     updateScorebard(){
 
-        document.querySelector("#p1_score").innerHTML = "test"
-        document.querySelector("#p1_sunk").innerHTML = "test"
-        document.querySelector("#p1_hitCount").innerHTML = "test"
-        document.querySelector("#p1_missCount").innerHTML = "test"
+        document.querySelector("#zone_p1_score").innerHTML = p1.boatCount;
+        document.querySelector("#zone_p1_sunk").innerHTML = "isSunk";
+        document.querySelector("#zone_p1_hitCount").innerHTML = "hitCounter";
+        document.querySelector("#zone_p1_missCount").innerHTML = "attempt";
 
-        document.querySelector("#p2_score").innerHTML = "test"
-        document.querySelector("#p2_sunk").innerHTML = "test"
-        document.querySelector("#p2_hitCount").innerHTML = "test"
-        document.querySelector("#p2_missCount").innerHTML = "test"
+        
+        document.querySelector("#zone_p2_score").innerHTML = "boatCount";
+        document.querySelector("#zone_p2_sunk").innerHTML = "isSunk";
+        document.querySelector("#zone_p2_hitCount").innerHTML = "hitCounter";
+        document.querySelector("#zone_p2_missCount").innerHTML = "attempt";
 
 
     }
 };
-
-
-
-
-
-
-
-
-

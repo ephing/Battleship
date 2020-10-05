@@ -193,10 +193,11 @@ class AI{
 
                         if(Enemy.boatBoard.hasBeenHit[row][col]!=true){
                             //in isAHit col and row are flipped since that's how it used for p1 and p2 in application.js
-                            if(Enemy.boatBoard.isAHit(col,row===true)){
+                            if(Enemy.boatBoard.isAHit(col,row)===true){
                                 Enemy.boatBoard.hasBeenHit[row][col]=true;
                                 Enemy.hitBoard.attempt[row][col]=true;
                                 Enemy.hitBoard.hit[row][col]=true;
+								Enemy.boatCount--;
                                 hitFound=true;
                             }
                         }
@@ -395,16 +396,15 @@ class AI{
 
 //ties in with ai_application function fire() after checking if boat is to be hit
     isSunk(boatNumCheck){
-        returnVal=true;
 
         for(let i =0; i<9; i++){
             for (let j=0; j<9; j++){
                 if(boatNumCheck===this.boatOnBoard[i][j]){
-                    returnVal=false;
+                    return false;
                 }
             }
         }
-        return returnVal;
+        return true;
     }
 /*    randomCol(num){
         if(num===1){
