@@ -156,6 +156,14 @@ class Application {
             this.hideHTML("#infoTabel");
             this.hideHTML("#button");
             this.hideHTML("#boatSelect");
+            this.hideHTML("#row");
+            this.hideHTML("#col");
+            try {
+                this.hideHTML("#continueButton");
+            } catch (error) {
+                
+            }
+
             if (fireStage == false) {
                 document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn!</h2><button onclick=\"select.play(); application.stageInit(0);\">Confirm</button>";
             } else {
@@ -185,7 +193,8 @@ class Application {
             this.hideHTML("#boatSelect");
             this.showHTML("#row");
             this.showHTML("#col");
-            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire();\">Fire</button>";
+            // ;
+            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire(); \">Fire</button>";
             this.drawBoard(currentPlayer);
 
         }
@@ -282,7 +291,7 @@ class Application {
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else {
             this.drawBoard(currentPlayer);
-            document.querySelector("#gameInfo").innerHTML += "</h2><button onclick=\"select.play(); application.stageInit(-1);\">Continue</button>";
+            document.querySelector("#gameInfo").innerHTML += "</h2><button id='continueButton' onclick=\"select.play(); application.stageInit(-1);\">Continue</button>";
         }
     }
 

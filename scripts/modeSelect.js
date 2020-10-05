@@ -1,3 +1,6 @@
+application = null
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     wrapper =   document.getElementById("startWrapper");
@@ -11,12 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("AI Difficulty = "+ AIDifficulty);
 
             hideStart(wrapper);
+            application = new Application();
             showGame()
         }); 
         
 
     document.getElementById("playerMode").addEventListener("click", function() {
             console.log("Selected Player Mode")
+            application = new Application();
 
             hideStart(wrapper);
             showGame()
@@ -45,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
         showHTML("#button")
         showHTML("#scoreboard")
     }
+    
+
 });
 
 
