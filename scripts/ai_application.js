@@ -222,7 +222,7 @@ class AI_Application {
 		let colChoice = parseInt(col.options[col.selectedIndex].value);
 		//currentPlayer attacks other player
 		if (currentPlayer === 1) {
-			if (ai.get[rowChoice][colChoice] === true) {
+			if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
 				return;
 			} else {
