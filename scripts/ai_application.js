@@ -19,10 +19,10 @@ class AI_Application {
             // this.showHTML("#button");
             // need to make this vissible 
         });
+        console.log("AI App")
 
         window.ai = new AI(difficulty)
 
-        console.log("AI App")
         // keyboard key code values from https://javascript.info/keyboard-events
         // Detects key presses and executes functions based on them
 
@@ -63,6 +63,8 @@ class AI_Application {
      * @function
      */
     main() {
+        console.log("AI App Main")
+
         let selector = document.querySelector("#boatSelect");
         let boatCount = parseInt(selector.options[selector.selectedIndex].value);
         selector.style.visibility = "hidden";
@@ -106,6 +108,36 @@ class AI_Application {
             bHit = p1.hitBoard;
             opponentb = ai.hitBoard;
             // opponentb = p2.hitBoard;
+            for (let i = 0; i < 9; i++) { //row
+                for (let j = 0; j < 9; j++) { //column
+                    //check hitboard info
+                    if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
+                        document.getElementById('spot1' + i + j).className = "hit";
+                    } else if (opponentb.attempt[i][j]) {
+                        document.getElementById('spot1' + i + j).className = "miss";
+                    } else {
+                        document.getElementById('spot1' + i + j).className = "ocean";
+                    }
+                    //boatboard info
+                    if (b.isAHit(j, i)) {
+                        let bid = b.getBoatID(j, i);
+                        if (b.hasBeenHit[i][j]) {
+                            document.getElementById('spot2' + i + j).className = "hit";
+                            document.getElementById('spot2' + i + j).innerHTML = bid;
+                        } else {
+                            document.getElementById('spot2' + i + j).className = "boat";
+                            document.getElementById('spot2' + i + j).innerHTML = bid;
+                        }
+                    }
+                    else if(bHit.attempt[i][j]){
+                            document.getElementById('spot2' + i + j).className = "miss";
+                    }
+                    else {
+                        document.getElementById('spot2' + i + j).className = "ocean";
+                        document.getElementById('spot2' + i + j).innerHTML = "";
+                    }
+                }
+            }
         }
         // } else {          
         //     b = p2.boatBoard;
@@ -114,36 +146,7 @@ class AI_Application {
         //     opponentb = p1.hitBoard;
         // }
 
-        for (let i = 0; i < 9; i++) { //row
-            for (let j = 0; j < 9; j++) { //column
-                //check hitboard info
-                if (opponentb.attempt[i][j] && opponentb.hit[i][j]) {
-                    document.getElementById('spot1' + i + j).className = "hit";
-                } else if (opponentb.attempt[i][j]) {
-                    document.getElementById('spot1' + i + j).className = "miss";
-                } else {
-                    document.getElementById('spot1' + i + j).className = "ocean";
-                }
-                //boatboard info
-                if (b.isAHit(j, i)) {
-                    let bid = b.getBoatID(j, i);
-                    if (b.hasBeenHit[i][j]) {
-                        document.getElementById('spot2' + i + j).className = "hit";
-                        document.getElementById('spot2' + i + j).innerHTML = bid;
-                    } else {
-                        document.getElementById('spot2' + i + j).className = "boat";
-                        document.getElementById('spot2' + i + j).innerHTML = bid;
-                    }
-                }
-                else if(bHit.attempt[i][j]){
-                        document.getElementById('spot2' + i + j).className = "miss";
-                }
-                else {
-                    document.getElementById('spot2' + i + j).className = "ocean";
-                    document.getElementById('spot2' + i + j).innerHTML = "";
-                }
-            }
-        }
+
     }
 
     /**
@@ -222,10 +225,12 @@ class AI_Application {
 		let colChoice = parseInt(col.options[col.selectedIndex].value);
 		//currentPlayer attacks other player
 		if (currentPlayer === 1) {
-			if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+			if (ai.hitBoard.hit[rowChoice][colChoice] === true) {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
 				return;
 			} else {
+                ai.takeShot(rowChoice,colChoice);
+
 				document.querySelector("#cannon").play();
 				setTimeout(() => {
 					// flags p2 boatBoard's hasBeenHit array for position
@@ -270,7 +275,7 @@ class AI_Application {
             this.hideHTML("#infoTabel");
             this.hideHTML("#boatSelect");
             document.querySelector("#playerConfirmation").innerHTML = "<h2>The AI Wins " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
-        } else if (ai.getBoatCount() === 0) {
+        } else if (ai.AIhp() === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
             this.hideHTML("#gameBoard");

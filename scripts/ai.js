@@ -318,6 +318,10 @@ class AI{
         //status value returned
         return status;
     }
+    
+    AIhp(){
+        return this.boatCount;
+    }
 
 /*    randomCol(num){
         if(num===1){
