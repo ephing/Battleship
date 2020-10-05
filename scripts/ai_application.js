@@ -219,7 +219,7 @@ class AI_Application {
             this.showHTML("#row");
             this.showHTML("#col");
             // ;
-            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire(); application.aiTurn(); \">Fire</button>";
+            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire();  \">Fire</button>";
             this.drawBoard(currentPlayer);
 
         }
@@ -301,7 +301,7 @@ class AI_Application {
             document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 1 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
         } else {
             this.drawBoard(currentPlayer);
-            document.querySelector("#gameInfo").innerHTML += "</h2><button id='continueButton' onclick=\"select.play(); application.stageInit(-1);\">Continue</button>";
+            document.querySelector("#gameInfo").innerHTML += "</h2><button id='continueButton' onclick=\"select.play(); application.aiTurn(); application.stageInit(-1);\">Continue</button>";
         }
     }
 
