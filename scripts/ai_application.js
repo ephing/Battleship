@@ -219,7 +219,7 @@ class AI_Application {
             this.showHTML("#row");
             this.showHTML("#col");
             // ;
-            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire(); \">Fire</button>";
+            document.querySelector("#gameInfo").innerHTML = "Select coordinate to attack " + "</h2><button onclick=\"select.play(); application.fire(); application.aiTurn(); \">Fire</button>";
             this.drawBoard(currentPlayer);
 
         }
