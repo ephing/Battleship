@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("AI Difficulty = "+ AIDifficulty);
 
             hideStart(wrapper);
-            application = new Application();
+            application = new AI_Application();
             showGame()
         }); 
         
 
     document.getElementById("playerMode").addEventListener("click", function() {
             console.log("Selected Player Mode")
-            application = new Application();
+            application = new PVP_Application();
 
             hideStart(wrapper);
             showGame()
