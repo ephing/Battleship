@@ -35,6 +35,7 @@
         <source src="sounds\select.mp3">
         </source>
     </audio>
+    <script src="scripts/modeSelect.js"></script>
     <script src="scripts/application.js"></script>
     <script src="scripts/boat.js"></script>
     <script src="scripts/player.js"></script>
@@ -43,11 +44,22 @@
     <script src="scripts/ai.js"></script>
 
 
-    <!-- <div id="startMessage">
-        <h1> Select Mode to start the game!</h1>
-        <button id = "AIMode"> AI Mode </button>
-        <button id = "playerMode"> 2 Player Mode</button>
-    </div> -->
+    <div id="startWrapper">
+        <div id="startMessage">
+            <h1 id="helloMessage"> Select Mode to start the game!</h1>
+            <button id = "AIMode"> AI Mode </button>
+            
+            <select id = "AIModeSelect">
+                <option value="1">Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+            </select>
+
+            <button id = "playerMode"> 2 Player Mode</button>
+        </div>    
+    </div>
+
+
 
 
     <div id="game">
@@ -68,7 +80,7 @@
 
             <div id="gameInfo"></div>
             <!-- hidden -->
-            <select id="col" style="visibility: visible "> 
+            <select id="col" > 
                 <option value="0">A</option>
                 <option value="1">B</option>
                 <option value="2">C</option>
@@ -81,7 +93,7 @@
             </select>
                         <!-- hidden -->
 
-            <select id="row" style="visibility: visible">
+            <select id="row">
                 <option value="0">1</option>
                 <option value="1">2</option>
                 <option value="2">3</option>

@@ -16,7 +16,8 @@ class Application {
     _init() {
         // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
-            this.showHTML("#button");
+            // this.showHTML("#button");
+            // need to make this vissible 
         });
 
         // keyboard key code values from https://javascript.info/keyboard-events

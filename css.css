@@ -24,6 +24,36 @@ html, body{
 
 
 
+#startMessage{
+    margin: 10%;
+    display:grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "message message message"
+                         "ai_but ai_but ai_dropDown"
+                         "player_but player_but e";
+}
+
+
+#helloMessage{
+    grid-area: message;
+    color: #FF6961;
+    text-align: center;
+}
+
+#AIMode{
+    grid-area: ai_but;
+}
+
+#AIModeSelect{
+    grid-area: ai_dropDown;
+}
+
+#playerMode{
+    grid-area: player_but;
+}
+
+
 
 #button {
     visibility: hidden;
@@ -70,10 +100,19 @@ html, body{
     margin-left: 10%;
     margin-right: 10%;
     background-color: var(--bg-input);
+
+    visibility: hidden; 
+    /* Hidden needs to be unhiden when game starts */
 }
 
 
+#row{
+    visibility: hidden;
+}
 
+#col{
+    visibility: hidden;
+}
 
 .grid {
     float: left;
@@ -95,10 +134,6 @@ html, body{
 .playerLabel{
     text-align: center;
     /* grid-column: 1 / 4; */
-}
-
-#game{
-
 }
 
 
