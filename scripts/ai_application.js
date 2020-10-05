@@ -152,14 +152,25 @@ class AI_Application {
     /**
      * Makes changes to graphics and player controls corresponding to current game stage
      * @param {number} stage -1,0,or 1, for the various stages of the game
+     *  //stage -1: default value, no controls
+        //stage 0: placing boats phase
+        //stage 1: choosing where to shoot opponent phase
+        //this is used so that we can make the keyboard work only on boat moving phase
+     * 
      * @function
      */
     stageInit(stage) {
         if (stage === -1) {
             currentStage = -1;
             if (currentPlayer === 1) {
-                currentPlayer = 2;
+                
+                
+                // currentPlayer = 2;
             } else {
+                // AI's turn
+                
+
+                
                 currentPlayer = 1;
             }
             this.hideHTML("#gameBoard");
@@ -168,6 +179,7 @@ class AI_Application {
             this.hideHTML("#boatSelect");
             this.hideHTML("#row");
             this.hideHTML("#col");
+
             try {
                 this.hideHTML("#continueButton");
             } catch (error) {
@@ -180,21 +192,24 @@ class AI_Application {
                 document.querySelector("#playerConfirmation").innerHTML = "<h2>Player " + currentPlayer + " Turn to attack!</h2><button onclick=\"select.play(); application.stageInit(1);\">Attack</button>";
             }
         } else if (stage === 0) {
-            currentStage = 0;
-            document.querySelector("#playerConfirmation").innerHTML = "";
-            let selector = document.querySelector("#boatSelect");
-            selector.innerHTML = "";
-            for (let i = 0; i < p1.boatBoard.boatCount; i++) {
-                selector.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />";
-            }
-            selector.style.visibility = "visible";
-            this.showHTML("#button");
-            this.showHTML("#gameBoard");
-            this.showHTML("#infoTabel");
-            this.drawBoard(currentPlayer);
-            if (currentPlayer === 2) {
+            if (currentPlayer === 1) {
+                currentStage = 0;
+                document.querySelector("#playerConfirmation").innerHTML = "";
+                let selector = document.querySelector("#boatSelect");
+                selector.innerHTML = "";
+                for (let i = 0; i < p1.boatBoard.boatCount; i++) {
+                    selector.innerHTML += "<option value=\"" + (i + 1) + "\">" + (i + 1) + "</option><br />";
+                }
+                selector.style.visibility = "visible";
+                this.showHTML("#button");
+                this.showHTML("#gameBoard");
+                this.showHTML("#infoTabel");
+                this.drawBoard(currentPlayer);
+                
                 fireStage = true;
+                
             }
+           
         } else if (stage === 1) {
             currentStage = 1;
             document.querySelector("#playerConfirmation").innerHTML = "";
@@ -210,6 +225,9 @@ class AI_Application {
         }
     }
 
+    aiTurn(){
+        console.log("AI turn");
+    }
     /**
      * Game stage that allows you to select row and column and fire at a position
      * @function
@@ -223,7 +241,8 @@ class AI_Application {
 		let col = document.querySelector("#col");
 		let rowChoice = parseInt(row.options[row.selectedIndex].value);
 		let colChoice = parseInt(col.options[col.selectedIndex].value);
-		//currentPlayer attacks other player
+        
+        //currentPlayer attacks other player
 		if (currentPlayer === 1) {
 			if (ai.hitBoard.hit[rowChoice][colChoice] === true) {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
