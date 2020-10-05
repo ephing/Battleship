@@ -231,7 +231,6 @@ class AI_Application {
 			} else {
                 
 
-
                 //function below will set ai.hitBoard.hit[rowChoice][colChoice] to true and lower AI hp by one 
                 ai.takeShot(rowChoice,colChoice);
 
@@ -240,11 +239,13 @@ class AI_Application {
 					// flags p2 boatBoard's hasBeenHit array for position
    
 					if (ai.boatOnBoard[rowChoice][colChoice]!=0) {
-						// flags if shot landed for hitBoard
+                        // flags if shot landed for hitBoard
+                        let boatsink=ai.boatOnBoard[rowChoice][colChoice];
+
 						document.querySelector("#explosion").play();
 
-						if (boatt.hitCounter === boatt.dimension) {
-							boatt.isSunk = true;
+						if (ai.isSunk(boatsink)===true) {
+
 							document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
 						}
 					}
