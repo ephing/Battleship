@@ -13,12 +13,14 @@ class AI_Application {
      * @listens Document:DOMContentLoaded
      * @listens Document:keydown
      */
-    _init() {
+    _init(difficulty) {
         // Makes the boat count selection button visible once everything is loaded
         document.addEventListener("DOMContentLoaded", () => {
             // this.showHTML("#button");
             // need to make this vissible 
         });
+
+        window.ai = new AI(difficulty)
 
         console.log("AI App")
         // keyboard key code values from https://javascript.info/keyboard-events
@@ -28,7 +30,6 @@ class AI_Application {
             if (currentStage === 0) {
                 let player;
                 if (currentPlayer === 1) player = p1.boatBoard;
-                else player = p2.boatBoard;
                 let selector = document.querySelector("#boatSelect");
                 let boatChoice = parseInt(selector.options[selector.selectedIndex].value) - 1;
                 switch (e.key) {
@@ -66,6 +67,7 @@ class AI_Application {
         let boatCount = parseInt(selector.options[selector.selectedIndex].value);
         selector.style.visibility = "hidden";
         window.currentPlayer = 2;
+
         //stage -1: default value, no controls
         //stage 0: placing boats phase
         //stage 1: choosing where to shoot opponent phase
@@ -75,7 +77,9 @@ class AI_Application {
         //outerHTML
         document.querySelector("#boatCount").innerHTML = "";
         window.p1 = new Player(boatCount, 1);
-        window.p2 = new Player(boatCount, 2);
+
+
+        // window.p2 = new Player(boatCount, 2);
         
         
 
@@ -100,13 +104,15 @@ class AI_Application {
             b = p1.boatBoard;
             // This is added so that the spots the opponet has hit show up on the players board
             bHit = p1.hitBoard;
-            opponentb = p2.hitBoard;
-        } else {          
-            b = p2.boatBoard;
-            // This is added so that the spots the opponet has hit show up on the players board
-            bHit = p2.hitBoard;
-            opponentb = p1.hitBoard;
+            opponentb = ai.hitBoard;
+            // opponentb = p2.hitBoard;
         }
+        // } else {          
+        //     b = p2.boatBoard;
+        //     // This is added so that the spots the opponet has hit show up on the players board
+        //     bHit = p2.hitBoard;
+        //     opponentb = p1.hitBoard;
+        // }
 
         for (let i = 0; i < 9; i++) { //row
             for (let j = 0; j < 9; j++) { //column
@@ -216,14 +222,15 @@ class AI_Application {
 		let colChoice = parseInt(col.options[col.selectedIndex].value);
 		//currentPlayer attacks other player
 		if (currentPlayer === 1) {
-			if (p2.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
+			if (ai.get[rowChoice][colChoice] === true) {
 				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire();\">fire</button>";
 				return;
 			} else {
 				document.querySelector("#cannon").play();
 				setTimeout(() => {
 					// flags p2 boatBoard's hasBeenHit array for position
-					p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
+                    ai.hitaray
+                    p2.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
 					// flags attempt for hitBoard
 					p2.hitBoard.attempt[rowChoice][colChoice] = true;
 					// checks if col, row is a hit
@@ -244,32 +251,12 @@ class AI_Application {
 					}
 				}, 2000);
 			}
-		} else {
-			if (p1.boatBoard.hasBeenHit[rowChoice][colChoice] === true) {
-				document.querySelector("#gameInfo").innerHTML = "Firing at same position, please re-enter " + "</h2><button onclick=\"select.play(); application.fire(-1);\">fire</button>";
-				return;
-			} else {
-				document.querySelector("#cannon").play();
-				setTimeout(() => {
-					p1.boatBoard.hasBeenHit[rowChoice][colChoice] = true;
-					p1.hitBoard.attempt[rowChoice][colChoice] = true;
-					if (p1.boatBoard.isAHit(colChoice, rowChoice)) {
-						document.querySelector("#explosion").play();
-						p1.hitBoard.hit[rowChoice][colChoice] = true;
-						p1.boatCount -= 1;
-						let boatt = p1.getBoat(p1.boatBoard.getBoatID(colChoice, rowChoice) - 1);
-						boatt.hitCounter++;
-						if (boatt.hitCounter === boatt.dimension) {
-							boatt.isSunk = true;
-							document.querySelector("#gameInfo").innerHTML = "You sunk your opponent's 1x" + boatt.dimension + " boat! ";
-						}
-					}
-					else {
-						document.querySelector("#miss").play();
-					}
-				}, 2000);
-			}
-		}
+        } else
+        {
+            // to-do: AI
+        }
+        
+
 		setTimeout(() => {
 			this.checkWin();
 		}, 2000);
@@ -282,8 +269,8 @@ class AI_Application {
             this.hideHTML("#gameBoard");
             this.hideHTML("#infoTabel");
             this.hideHTML("#boatSelect");
-            document.querySelector("#playerConfirmation").innerHTML = "<h2>Player 2 " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
-        } else if (p2.boatCount === 0) {
+            document.querySelector("#playerConfirmation").innerHTML = "<h2>The AI Wins " + " Wins !</h2><button onclick=\"select.play(); window.location.reload();\">Play Again</button>";
+        } else if (ai.getBoatCount() === 0) {
 			document.querySelector("#victoryMusic").play();
 			document.querySelector("#introMusic").pause();
             this.hideHTML("#gameBoard");

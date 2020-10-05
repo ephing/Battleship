@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("AI Difficulty = "+ AIDifficulty);
 
             hideStart(wrapper);
-            application = new AI_Application();
+            application = new AI_Application(AIDifficulty);
             showGame()
         }); 
         
