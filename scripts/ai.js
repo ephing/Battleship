@@ -177,16 +177,6 @@ class AI{
         if(this.difficulty==3){
            
             let hitFound=false;
-
-            Enemy.boatBoard.boats.forEach(element => {
-                if (hitFound) {
-                    break;
-                }else{
-                    if (element)
-                }    
-            });
-
-
                 
                 for(let row = 0; row<9; row++){
                     for(let col =0; col<9; col++){
